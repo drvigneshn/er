@@ -8,6 +8,7 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
 ## Hosting
 - **Live at:** https://er.pediaos.com — GitHub Pages from the `main` branch, root folder.
 - `CNAME` holds the domain; DNS is a CNAME at Hostinger (`er` → `drvigneshn.github.io`).
+- The old address cbc.pediaos.com/er/ redirects here (handled in the `drvigneshn/cbc` repo, `er/`).
 - Deploy = commit and push to `main`. Always `git fetch` first; never clobber newer work.
 
 ## Files
