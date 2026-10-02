@@ -6,7 +6,7 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.1.1" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.1.2" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
 <meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, aligned to IAP STG, WHO and AHA PALS.">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
@@ -244,8 +244,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 .gcard{background:var(--soft);border-radius:.75rem;padding:.5rem .75rem;line-height:1.4}
 .gcard .who{font-weight:700}
 .gcard .where{font-size:.75rem;color:var(--muted)}
-.gcard .award{margin-top:.25rem;font-size:.75rem;font-weight:600;color:#A16207}
-:root[data-app-theme="night"] .gcard .award{color:#FCD38D}
+.gcard .award{margin-top:.25rem;font-size:.75rem;font-weight:600;color:var(--accent)}
 .gbox h3{margin:.75rem 0 .25rem;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--alarm)}
 .gbox p{margin:0 0 .5rem;font-size:.875rem;line-height:1.5}
 .gbox .verify{color:var(--alarm);font-weight:700}
@@ -260,13 +259,13 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.1.1</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.1.2</span></h2>
     </div>
     <p class="gsub">Paediatric emergency decision-support · IAP STG / WHO / AHA PALS-aligned</p>
     <div class="gcard">
       <div class="who">Created by Dr Vignesh N</div>
       <div class="where">Kanchi Kamakoti CHILDS Trust Hospital, Chennai</div>
-      <div class="award">&#127942; Medshark Champion — Best Pitch, ANBAI National Conclave 2026</div>
+      <div class="award">Creator of Code Blue Companion · cbc.pediaos.com</div>
     </div>
     <h3>Disclaimer</h3>
     <p>A <b>decision-support aid for trained clinicians</b>. It calculates weight-based doses aligned with IAP STG, WHO and AHA PALS 2020.</p>
@@ -284,7 +283,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.1.1</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.1.2</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
       <label class="wt"><span class="l">Weight</span><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></label>
@@ -323,7 +322,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.1.1</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.1.2</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
     <p>Decision-support aid for trained clinicians. Verify every dose against the current IAP STG and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
