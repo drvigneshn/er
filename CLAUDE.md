@@ -39,12 +39,14 @@ Bump all together: every `vX.Y.Z` in `index.html` (top bar, disclaimer gate, foo
 protocol/feature → minor.
 
 ## Preview → live workflow (new clinical content)
-- New protocols, drugs or scores go into `preview.html` first (a full copy of the app with
-  `const PREVIEW = true`, a review banner, "New" markers and `noindex`). The author reviews it
-  at https://er.pediaos.com/preview.html. `sw.js` never caches `preview.html`.
+- New protocols, drugs or scores go into `preview.html` first: copy `index.html`, set
+  `const PREVIEW = true`, add a `.pvbanner` div at the top of `#home` and
+  `<meta name="robots" content="noindex">`, and add new protocol ids to `NEWP`. The author
+  reviews it at https://er.pediaos.com/preview.html. `sw.js` never caches `preview.html`.
 - Go live only when the author approves: copy `preview.html` → `index.html`, set
-  `PREVIEW = false`, remove the `.pvbanner` div and the `robots` meta, then bump versions.
-- In v1.2 the new data sits after the original `KW` block: `NEWP` (new protocol ids),
+  `PREVIEW = false`, remove the `.pvbanner` div and the `robots` meta, bump versions, and
+  delete `preview.html`. (v1.2.0 went live this way on 2 Oct 2026.)
+- Since v1.2 the added data sits after the original `KW` block: `NEWP` (new protocol ids),
   `DRUGS` / `DCLS` (drug library; `forms` give strengths so volumes are computed when a
   use's unit matches), `SCORES` (scores need every item answered before a result shows;
   `calc` entries are calculators/reference), `LUND`, `VITALS`.

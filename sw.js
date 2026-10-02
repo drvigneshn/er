@@ -1,4 +1,4 @@
-const CACHE = 'perc-v1.1.3';
+const CACHE = 'perc-v1.2.0';
 const CORE = ['./','index.html','about.html','privacy.html','manifest.webmanifest','icon.svg','icon-192.png','icon-512.png','apple-touch-icon.png'];
 self.addEventListener('install', e => {
   self.skipWaiting();
