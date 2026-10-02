@@ -22,8 +22,11 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
   amber for "estimated/verify". Themes via `data-app-theme` = `day` / `night` / `bright` on
   `<html>`; style only through the CSS variables so all three work. CSS is in `rem`, so the
   text sizer (`--ts`, 85–135%) scales everything.
-- Disclaimer gate `#gate` shows on every launch (like Code Blue Companion); footer
-  "Read the disclaimer" reopens it.
+- Disclaimer gate `#gate` shows once per browser session, i.e. on every app launch
+  (`sessionStorage percAck`); footer "Read the disclaimer" reopens it. It must fit one phone
+  screen without scrolling. The Medshark award belongs to Code Blue Companion — don't show it here.
+- `about.html` and `privacy.html` are linked from the footer; keep the privacy page accurate
+  (no accounts/analytics; localStorage only; Google Fonts; browser speech recognition).
 - Top bar: logo + name + version | weight + age (age select sets an *estimated* weight and
   flags it) | voice, colour-mode, Aa (text size + layout panel `#disp`).
 - Layouts: Auto / Mobile / Tablet (list beside protocol) / Landscape (also 2-column phases).
@@ -31,8 +34,21 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
 
 ## Versioning (every change)
 Bump all together: every `vX.Y.Z` in `index.html` (top bar, disclaimer gate, footer —
-`grep -n 'v1\.' index.html`) and `const CACHE = 'perc-vX.Y.Z'` in `sw.js` (this is what pushes
-updates to returning users). Small change → patch; new protocol/feature → minor.
+`grep -n 'v1\.' index.html`), the badge in `about.html`, and `const CACHE = 'perc-vX.Y.Z'` in
+`sw.js` (this is what pushes updates to returning users). Small change → patch; new
+protocol/feature → minor.
+
+## Preview → live workflow (new clinical content)
+- New protocols, drugs or scores go into `preview.html` first (a full copy of the app with
+  `const PREVIEW = true`, a review banner, "New" markers and `noindex`). The author reviews it
+  at https://er.pediaos.com/preview.html. `sw.js` never caches `preview.html`.
+- Go live only when the author approves: copy `preview.html` → `index.html`, set
+  `PREVIEW = false`, remove the `.pvbanner` div and the `robots` meta, then bump versions.
+- In v1.2 the new data sits after the original `KW` block: `NEWP` (new protocol ids),
+  `DRUGS` / `DCLS` (drug library; `forms` give strengths so volumes are computed when a
+  use's unit matches), `SCORES` (scores need every item answered before a result shows;
+  `calc` entries are calculators/reference), `LUND`, `VITALS`.
+- When a drug appears in both a protocol and the library, the doses must match.
 
 ## Clinical content
 Doses and protocols are the author's (Dr Vignesh N, paediatrician). Don't change a dose,
