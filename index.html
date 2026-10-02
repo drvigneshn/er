@@ -6,7 +6,7 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.3.0" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.3.1" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
 <meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, aligned to IAP STG, WHO and AHA PALS.">
 <meta name="theme-color" content="#0B1F3A">
@@ -160,12 +160,13 @@ h2.sub{margin:1.375rem 0 .5rem;font-size:.6875rem;font-weight:600;letter-spacing
 .chip:hover{border-color:var(--accent);color:var(--accent)}
 .bands{display:flex;flex-direction:column;gap:.75rem}
 .band{background:var(--surface);border:var(--bw) solid var(--line);border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow)}
-.band h3{margin:0;display:flex;align-items:center;justify-content:space-between;padding:.6875rem 1rem .5625rem;
-  font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);
-  border-bottom:var(--bw) solid var(--line);box-shadow:inset 3px 0 0 var(--c)}
-:root[data-app-theme="night"] .band h3{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--c) 55%,white)}
-:root[data-app-theme="bright"] .band h3{box-shadow:inset 6px 0 0 var(--c)}
-.band h3 span{min-width:1.5rem;text-align:center;padding:0 .4375rem;border-radius:99px;background:var(--soft);color:var(--muted);font-size:.6875rem;letter-spacing:0}
+.band h3{margin:0;display:flex;align-items:center;justify-content:space-between;padding:.625rem 1rem;
+  font-size:.8125rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--c) 72%,var(--ink));background:color-mix(in srgb,var(--c) 11%,var(--surface));
+  border-bottom:var(--bw) solid var(--line);box-shadow:inset 5px 0 0 var(--c)}
+:root[data-app-theme="night"] .band h3{color:color-mix(in srgb,var(--c) 35%,white);background:color-mix(in srgb,color-mix(in srgb,var(--c) 60%,white) 16%,var(--surface));box-shadow:inset 5px 0 0 color-mix(in srgb,var(--c) 60%,white)}
+:root[data-app-theme="bright"] .band h3{color:#FFFFFF;background:var(--c);box-shadow:none}
+.band h3 span{min-width:1.5rem;text-align:center;padding:0 .4375rem;border-radius:99px;background:var(--surface);color:var(--muted);font-size:.6875rem;letter-spacing:0}
 .row{display:flex;width:100%;align-items:center;justify-content:space-between;gap:.5rem;min-height:max(2.875rem,44px);padding:0 1rem;border:0;
   border-top:var(--bw) solid var(--line);background:transparent;text-align:left;font-size:.96875rem;font-weight:500;color:var(--ink)}
 .band h3+.row{border-top:0}
@@ -294,16 +295,25 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 /* ---------- v1.3: browse index, guide, toast ---------- */
 .idx{display:grid;gap:1rem;margin-top:1rem}
-@media (min-width:1000px){ body.wide .idx{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start} }
-.idxs{background:var(--surface);border:var(--bw) solid var(--line);border-radius:.75rem;padding:.875rem 1rem 1rem;box-shadow:var(--shadow)}
-.idxh{margin:0 0 .25rem;display:flex;align-items:center;justify-content:space-between;font-size:1rem;font-weight:700;letter-spacing:-0.01em}
-.idxh span{font-size:.75rem;font-weight:600;color:var(--muted);background:var(--soft);border-radius:99px;padding:0 .5rem}
-.idxg{margin-top:.75rem}
-.idxt{display:flex;align-items:center;gap:.4375rem;margin-bottom:.375rem;font-size:.6875rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.idxt::before{content:"";width:.5rem;height:.5rem;border-radius:2px;background:var(--c)}
-:root[data-app-theme="night"] .idxt::before{background:color-mix(in srgb,var(--c) 55%,white)}
-.ilinks{display:flex;flex-wrap:wrap;gap:.375rem}
-.ilink{min-height:max(2.25rem,36px);padding:0 .75rem;border-radius:99px;border:var(--bw) solid var(--line);background:var(--bg);font-size:.8125rem;font-weight:500;color:var(--ink)}
+.idxs.pinned{margin-top:1rem}
+.idxs.pinned+.idx{margin-top:1rem}
+.idxs{container-type:inline-size;background:var(--surface);border:var(--bw) solid var(--line);border-radius:.875rem;padding:1rem;box-shadow:var(--shadow)}
+.idxh{margin:0;display:flex;align-items:center;justify-content:space-between;font-size:1.125rem;font-weight:700;letter-spacing:-0.015em}
+.idxh span{font-size:.75rem;font-weight:600;color:var(--muted);background:var(--soft);border-radius:99px;padding:.0625rem .5625rem}
+.idxcols{display:grid;gap:1rem;margin-top:.875rem}
+@container (min-width:42rem){ .idxcols{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start} }
+@container (min-width:66rem){ .idxcols{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.idxt{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.5625rem .75rem;border-radius:.5rem;
+  font-size:.8125rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--c) 72%,var(--ink));background:color-mix(in srgb,var(--c) 11%,var(--surface));box-shadow:inset 5px 0 0 var(--c)}
+.idxt b{font-size:.6875rem;font-weight:600;letter-spacing:0;color:var(--muted);background:var(--surface);border-radius:99px;padding:0 .4375rem;min-width:1.5rem;text-align:center}
+:root[data-app-theme="night"] .idxt{color:color-mix(in srgb,var(--c) 35%,white);background:color-mix(in srgb,color-mix(in srgb,var(--c) 60%,white) 16%,var(--surface));box-shadow:inset 5px 0 0 color-mix(in srgb,var(--c) 60%,white)}
+:root[data-app-theme="bright"] .idxt{color:#FFFFFF;background:var(--c);box-shadow:none}
+.ilinks{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.25rem,1fr));gap:.375rem;margin-top:.5rem}
+.idxh+.ilinks{margin-top:.75rem}
+.ilink{display:flex;align-items:center;justify-content:space-between;gap:.375rem;min-height:44px;padding:.5rem .75rem;text-align:left;line-height:1.25;
+  border-radius:.625rem;border:var(--bw) solid var(--line);background:var(--surface);font-size:.875rem;font-weight:500;color:var(--ink)}
+.ilink::after{content:"›";flex:none;color:var(--faint);font-size:1.125rem;line-height:1}
 .ilink:hover{border-color:var(--accent);color:var(--accent)}
 .ilink[aria-current="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent);font-weight:600}
 @media (max-width:420px){ .tabs .cnt{display:none} }
@@ -359,7 +369,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.0</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.1</span></h2>
     </div>
     <p class="gsub">Paediatric emergency decision-support · IAP STG / WHO / AHA PALS-aligned</p>
     <div class="gcard">
@@ -402,7 +412,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.0</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.1</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
       <label class="wt"><span class="l">Weight</span><span class="wv"><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></span></label>
@@ -445,7 +455,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.0</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.1</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
     <p>Decision-support aid for trained clinicians. Verify every dose against the current IAP STG and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button> · <button class="linkbtn" type="button" data-guide>How to use</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
@@ -1607,6 +1617,10 @@ const rowP = (id,sub) => `<button class="row" data-open="${id}"${det==="p"&&id==
 const rowD = (d,sub) => `<button class="row" data-opend="${d.id}"${det==="d"&&d.id===curD?' aria-current="true"':''}><span class="rl">${d.n}${d.aka?` <small>${d.aka}</small>`:""}</span>${tail(sub)}</button>`;
 const rowS = (s,sub) => `<button class="row" data-opens="${s.id}"${det==="s"&&s.id===curS?' aria-current="true"':''}><span class="rl">${s.n}</span>${tail(sub)}</button>`;
 const band = (name,c,rows,n) => `<div class="band"><h3 style="--c:${c}">${esc(name)}<span>${n}</span></h3>${rows}</div>`;
+function pinnedHTML(){
+  const ps = pins.filter(byId);
+  return ps.length ? `<section class="idxs pinned"><h2 class="idxh">Pinned<span>${ps.length}</span></h2><div class="ilinks">${ps.map(id=>`<button class="ilink" data-open="${id}"${det==="p"&&cur===id?' aria-current="true"':''}><span>${byId(id).name}</span></button>`).join("")}</div></section>` : "";
+}
 function renderHome(){
   const m = searchAll($("#q").value);
   let h="";
@@ -1618,17 +1632,17 @@ function renderHome(){
   } else {
     h += `<div class="seg tabs" role="tablist" aria-label="Sections">${SECS.map(s=>`<button type="button" role="tab" data-sec="${s.id}" aria-selected="${sec===s.id}" aria-pressed="${sec===s.id}">${s.l}<span class="cnt">${s.n()}</span>${PREVIEW&&NEWSEC.has(s.id)?'<span class="newdot" title="New"></span>':""}</button>`).join("")}</div>`;
     if(sec==="a"){
-      const il = (a,id,label,on) => `<button class="ilink" data-${a}="${id}"${on?' aria-current="true"':''}>${label}</button>`;
-      const ig = (name,c,links) => links.length ? `<div class="idxg"><div class="idxt" style="--c:${c}">${esc(name)}</div><div class="ilinks">${links.join("")}</div></div>` : "";
-      const is = (title,n,groups) => `<section class="idxs"><h2 class="idxh">${title}<span>${n}</span></h2>${groups.join("")}</section>`;
-      if(pins.length) h += `<h2 class="sub">Pinned</h2><div class="chips">${pins.filter(byId).map(id=>`<button class="chip" data-open="${id}">${byId(id).name}</button>`).join("")}</div>`;
+      const il = (a,id,label,on) => `<button class="ilink" data-${a}="${id}"${on?' aria-current="true"':''}><span>${label}</span></button>`;
+      const ig = (name,c,links) => links.length ? `<div class="idxg"><div class="idxt" style="--c:${c}"><span>${esc(name)}</span><b>${links.length}</b></div><div class="ilinks">${links.join("")}</div></div>` : "";
+      const is = (title,n,groups) => `<section class="idxs"><h2 class="idxh">${title}<span>${n}</span></h2><div class="idxcols">${groups.join("")}</div></section>`;
+      h += pinnedHTML();
       h += `<div class="idx">` +
         is("Protocols", P.length, G.map(g=>ig(g.name, g.c, g.ids.map(id=>il("open", id, byId(id).name, det==="p"&&cur===id))))) +
         is("Drugs", DRUGS.length, DCLS.map(c=>ig(c.name, c.c, DRUGS.filter(d=>d.cls===c.id).sort((a,b)=>a.n.localeCompare(b.n)).map(d=>il("opend", d.id, d.n, det==="d"&&curD===d.id))))) +
         is("Scores &amp; calculators", SCORES.length, [["Scores","#0E7490","score"],["Calculators & reference","#475467","calc"]].map(([nm,c,gp])=>ig(nm, c, SCORES.filter(s=>s.grp===gp).map(s=>il("opens", s.id, s.n, det==="s"&&curS===s.id))))) +
         `</div>`;
     } else if(sec==="p"){
-      if(pins.length) h += `<h2 class="sub">Pinned</h2><div class="chips">${pins.filter(byId).map(id=>`<button class="chip" data-open="${id}">${byId(id).name}</button>`).join("")}</div>`;
+      h += pinnedHTML();
       h += `<h2 class="sub">Browse by system</h2><div class="bands">` + G.map(g=>band(g.name, g.c, g.ids.map(id=>rowP(id)).join(""), g.ids.length)).join("") + `</div>`;
     } else if(sec==="d"){
       h += `<h2 class="sub">Drug library — weight-based doses and volumes</h2><div class="bands">` + DCLS.map(c=>{ const ds=DRUGS.filter(d=>d.cls===c.id).sort((a,b)=>a.n.localeCompare(b.n));
