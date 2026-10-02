@@ -6,7 +6,7 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.1.2" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.1.3" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
 <meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, aligned to IAP STG, WHO and AHA PALS.">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
@@ -21,7 +21,8 @@
 /* Apply saved theme + text size before first paint (no flash). */
 try{var s=JSON.parse(localStorage.getItem("perc")||"null")||{};
   document.documentElement.setAttribute("data-app-theme",s.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"night":"day"));
-  if(s.ts) document.documentElement.style.setProperty("--ts",s.ts);}catch(e){}
+  if(s.ts) document.documentElement.style.setProperty("--ts",s.ts);
+  if(sessionStorage.getItem("percAck")) document.documentElement.setAttribute("data-ack","");}catch(e){}
 </script>
 <style>
 /* ---------- Themes ---------- */
@@ -59,6 +60,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-u
   font-size:1rem;line-height:1.5;font-variant-numeric:tabular-nums;letter-spacing:-0.005em;
   padding-bottom:env(safe-area-inset-bottom,0px)}
 body.gated{overflow:hidden}
+html[data-ack] .gate{display:none}
+html[data-ack] body.gated{overflow:visible}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
@@ -221,7 +224,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 
 /* ---------- Footer ---------- */
 .site-foot{border-top:var(--bw) solid var(--line);background:var(--surface);padding:1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.8125rem}
-.site-foot .wrap{display:grid;gap:.5rem}
+.site-foot .wrap{display:grid;gap:.5rem;justify-items:center;text-align:center}
 .site-foot p{margin:0}
 .site-foot strong{color:var(--ink)}
 .linkbtn{border:0;background:none;padding:0;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
@@ -231,7 +234,9 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 .sister .t{display:block;font-weight:600;font-size:.875rem}
 .sister .d{display:block;font-size:.75rem;color:var(--muted)}
 .sister .go{margin-left:auto;color:var(--accent);font-weight:700}
-.copy{font-size:.75rem;color:var(--faint)}
+.copy{font-size:.75rem;color:var(--faint);line-height:1.6}
+.copy a{color:var(--muted);text-underline-offset:2px}
+.sister{text-align:left}
 
 /* ---------- Disclaimer gate ---------- */
 .gate{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(15,23,42,.6);overflow-y:auto}
@@ -259,7 +264,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.1.2</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.1.3</span></h2>
     </div>
     <p class="gsub">Paediatric emergency decision-support · IAP STG / WHO / AHA PALS-aligned</p>
     <div class="gcard">
@@ -283,7 +288,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.1.2</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.1.3</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
       <label class="wt"><span class="l">Weight</span><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></label>
@@ -322,14 +327,14 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.1.2</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.1.3</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
     <p>Decision-support aid for trained clinicians. Verify every dose against the current IAP STG and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
       <span><span class="t">Code Blue Companion</span><span class="d">cbc.pediaos.com · paediatric resuscitation console</span></span>
       <span class="go" aria-hidden="true">→</span>
     </a>
-    <p class="copy">© 2026 Dr Vignesh N, KKCTH. All rights reserved.</p>
+    <p class="copy">© 2026 Dr Vignesh N, Kanchi Kamakoti CHILDS Trust Hospital. All rights reserved.<br>“Pediatric ER Companion” · Not for reuse or redistribution without written permission. · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p>
   </div>
 </footer>
 
@@ -883,9 +888,9 @@ function toggleDisp(open){
   $("#dispBtn").setAttribute("aria-expanded", open);
 }
 
-/* ---------- disclaimer (shown on every launch) ---------- */
-function openGate(){ toggleDisp(false); $("#gate").hidden=false; document.body.classList.add("gated"); $("#gateOk").focus({preventScroll:true}); }
-function closeGate(){ $("#gate").hidden=true; document.body.classList.remove("gated"); }
+/* ---------- disclaimer (once per browser session = every app launch) ---------- */
+function openGate(){ toggleDisp(false); document.documentElement.removeAttribute("data-ack"); $("#gate").hidden=false; document.body.classList.add("gated"); $("#gateOk").focus({preventScroll:true}); }
+function closeGate(){ $("#gate").hidden=true; document.body.classList.remove("gated"); try{ sessionStorage.setItem("percAck","1"); }catch(e){} }
 
 /* ---------- speech out ---------- */
 let speaking=false;
@@ -1016,7 +1021,7 @@ applyTS();
 applyLayoutBtns();
 wNote();
 show("home");
-$("#gateOk").focus({preventScroll:true});
+if(document.documentElement.hasAttribute("data-ack")) closeGate(); else $("#gateOk").focus({preventScroll:true});
 if("serviceWorker" in navigator) addEventListener("load",()=>{ navigator.serviceWorker.register("sw.js").catch(()=>{}); });
 </script>
 </body>

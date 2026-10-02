@@ -1,5 +1,5 @@
-const CACHE = 'perc-v1.1.2';
-const CORE = ['./','index.html','manifest.webmanifest','icon.svg','icon-192.png','icon-512.png','apple-touch-icon.png'];
+const CACHE = 'perc-v1.1.3';
+const CORE = ['./','index.html','about.html','privacy.html','manifest.webmanifest','icon.svg','icon-192.png','icon-512.png','apple-touch-icon.png'];
 self.addEventListener('install', e => {
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE.map(u => new Request(u, {cache:'reload'}))).catch(()=>{})));
@@ -16,6 +16,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   const fonts = /^fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
   if (url.origin !== self.location.origin && !fonts) return;
+  if (url.pathname.endsWith('/preview.html')) return;   // review page: always fresh from the network
   e.respondWith(
     caches.open(CACHE).then(c => c.match(req).then(cached => {
       const net = fetch(req).then(res => {
