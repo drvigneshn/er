@@ -6,7 +6,7 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.1.0" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.1.1" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
 <meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, aligned to IAP STG, WHO and AHA PALS.">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
@@ -54,7 +54,7 @@ try{var s=JSON.parse(localStorage.getItem("perc")||"null")||{};
   --pressed:#000000; --shadow:none; --bw:2px; --strong:700;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{font-size:calc(16px * var(--ts));-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--barH,8rem) + .5rem)}
+html{font-size:calc(15px * var(--ts));-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--barH,8rem) + .5rem)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   font-size:1rem;line-height:1.5;font-variant-numeric:tabular-nums;letter-spacing:-0.005em;
   padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -195,8 +195,7 @@ h1{margin:.375rem 0 .25rem;font-size:1.75rem;line-height:1.15;font-weight:700;le
 .refs small{display:block;color:var(--muted);font-size:.75rem}
 .foot{margin-top:1.5rem;font-size:.8125rem;color:var(--muted);max-width:46rem}
 @media (max-width:560px){
-  .gbox{padding:1rem 1rem 1rem} .gact{margin:0 -1rem -1rem;padding:.625rem 1rem .875rem}
-  .gbox p{font-size:.875rem;margin-bottom:.5rem} .gsub{margin-bottom:.625rem}
+  .gbox{padding:.875rem .875rem .75rem} .gbox p{font-size:.8125rem;margin-bottom:.4375rem}
   .phase{grid-template-columns:1fr}
   .time{padding:0 0 .125rem}
   h1{font-size:1.5rem}
@@ -236,22 +235,22 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 
 /* ---------- Disclaimer gate ---------- */
 .gate{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(15,23,42,.6);overflow-y:auto}
-.gbox{width:100%;max-width:30rem;max-height:calc(100vh - 2rem);overflow-y:auto;background:var(--surface);border:2px solid var(--alarm);border-radius:1.125rem;padding:1.25rem 1.25rem 1rem;box-shadow:var(--pop)}
+.gbox{width:100%;max-width:30rem;max-height:calc(100dvh - 1.5rem);overflow-y:auto;background:var(--surface);border:2px solid var(--alarm);border-radius:1.125rem;padding:1rem 1.125rem .875rem;box-shadow:var(--pop)}
 .ghead{display:flex;align-items:center;gap:.75rem}
-.ghead svg{width:2.75rem;height:2.75rem;flex:none}
-.ghead h2{margin:0;font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2}
+.ghead svg{width:2.375rem;height:2.375rem;flex:none}
+.ghead h2{margin:0;font-size:1.125rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2}
 .gbadge{display:inline-block;margin-left:.375rem;padding:.0625rem .5rem;border:1.5px solid var(--accent);border-radius:99px;color:var(--accent);font-size:.75rem;font-weight:700;vertical-align:middle}
-.gsub{margin:.375rem 0 .875rem;color:var(--muted);font-size:.8125rem}
-.gcard{background:var(--soft);border-radius:.75rem;padding:.75rem .875rem}
+.gsub{margin:.375rem 0 .625rem;color:var(--muted);font-size:.75rem;line-height:1.4}
+.gcard{background:var(--soft);border-radius:.75rem;padding:.5rem .75rem;line-height:1.4}
 .gcard .who{font-weight:700}
-.gcard .where{font-size:.8125rem;color:var(--muted)}
-.gcard .award{margin-top:.375rem;font-size:.8125rem;font-weight:600;color:#A16207}
+.gcard .where{font-size:.75rem;color:var(--muted)}
+.gcard .award{margin-top:.25rem;font-size:.75rem;font-weight:600;color:#A16207}
 :root[data-app-theme="night"] .gcard .award{color:#FCD38D}
-.gbox h3{margin:1rem 0 .375rem;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--alarm)}
-.gbox p{margin:0 0 .625rem;font-size:.9375rem;line-height:1.55}
+.gbox h3{margin:.75rem 0 .25rem;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--alarm)}
+.gbox p{margin:0 0 .5rem;font-size:.875rem;line-height:1.5}
 .gbox .verify{color:var(--alarm);font-weight:700}
-.gact{position:sticky;bottom:-1rem;margin:0 -1.25rem -1rem;padding:.75rem 1.25rem 1rem;background:var(--surface);border-top:var(--bw) solid var(--line);border-radius:0 0 1rem 1rem}
-.gok{width:100%;min-height:3.25rem;border:0;border-radius:.75rem;background:var(--accent);color:var(--on-accent);font-size:1.0625rem;font-weight:700}
+.gact{margin-top:.25rem}
+.gok{width:100%;min-height:3rem;border:0;border-radius:.75rem;background:var(--accent);color:var(--on-accent);font-size:1.0625rem;font-weight:700}
 .gfoot{margin:.625rem 0 0!important;text-align:center;font-size:.75rem!important;color:var(--muted)}
 </style>
 </head>
@@ -261,19 +260,18 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.1.0</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.1.1</span></h2>
     </div>
-    <p class="gsub">Paediatric emergency decision-support · weight-based protocols · IAP STG / WHO / AHA PALS-aligned</p>
+    <p class="gsub">Paediatric emergency decision-support · IAP STG / WHO / AHA PALS-aligned</p>
     <div class="gcard">
       <div class="who">Created by Dr Vignesh N</div>
       <div class="where">Kanchi Kamakoti CHILDS Trust Hospital, Chennai</div>
-      <div class="award">&#127942; Medshark Champion — Best Pitch, ANBAI National Conclave 2026 (Code Blue Companion)</div>
+      <div class="award">&#127942; Medshark Champion — Best Pitch, ANBAI National Conclave 2026</div>
     </div>
     <h3>Disclaimer</h3>
-    <p>Pediatric ER Companion is a <b>decision-support aid for trained clinicians</b> managing paediatric emergencies. It performs weight-based dose calculations aligned with the IAP Standard Treatment Guidelines, WHO guidance and AHA PALS 2020.</p>
-    <p>A trained clinician must <b>independently verify every dose, volume and infusion rate before administration</b>. This tool assists recall and calculation only — it does not replace clinical judgment, is not a medical device, and does not diagnose or treat. The treating clinician remains fully responsible for all decisions.</p>
-    <p><b>Scope:</b> infants and children. Doses are capped at adult maximums. Not a substitute for neonatal (NRP / NICU) protocols or your unit's own policies.</p>
-    <p>Nothing you enter leaves this device.</p>
+    <p>A <b>decision-support aid for trained clinicians</b>. It calculates weight-based doses aligned with IAP STG, WHO and AHA PALS 2020.</p>
+    <p><b>Independently verify every dose, volume and rate before giving it.</b> This tool aids recall and calculation only — it is not a medical device and does not replace clinical judgment. The treating clinician remains fully responsible.</p>
+    <p><b>Scope:</b> infants and children; doses capped at adult maximums. Not for neonatal (NRP / NICU) care. Nothing you enter leaves this device.</p>
     <p class="verify">Verify every dose before administration.</p>
     <div class="gact">
       <button class="gok" id="gateOk" type="button">I understand — enter</button>
@@ -286,7 +284,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.1.0</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.1.1</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
       <label class="wt"><span class="l">Weight</span><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></label>
@@ -325,7 +323,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.1.0</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.1.1</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
     <p>Decision-support aid for trained clinicians. Verify every dose against the current IAP STG and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
