@@ -31,6 +31,14 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
   flags it) | voice, colour-mode, Aa (text size + layout panel `#disp`).
 - Layouts: Auto / Mobile / Tablet (list beside protocol) / Landscape (also 2-column phases).
 - Weight checks: outside 0.5–150 kg is rejected; <2 or >100 kg shows "verify".
+- (v1.3) Navigation lives in the URL hash — `#p/<id>`, `#d/<id>`, `#s/<id>` — via `nav()` /
+  `route()` / `popstate`, so refresh keeps the page and the phone back button works.
+- (v1.3) Storage: preferences (pins, theme, layout, text size, tab) in `localStorage perc`;
+  patient data (weight, est, age, score answers, TBSA) in `sessionStorage percPt` only — cleared
+  when the app is closed or by **New patient**. Never put patient data in localStorage.
+- (v1.3) Tablet/desktop start full-width (`body.wide`, All index in 3 columns) and switch to the
+  split view only once something is open. "How to use" guide `#guide` shows once ever
+  (`localStorage percGuide`), reopenable from the menu (≡), the ? button and the footer.
 
 ## Versioning (every change)
 Bump all together: every `vX.Y.Z` in `index.html` (top bar, disclaimer gate, footer —
@@ -57,5 +65,9 @@ Doses and protocols are the author's (Dr Vignesh N, paediatrician). Don't change
 maximum or protocol step unless asked; flag suspected errors instead.
 
 ## Testing
-No test suite. Extract the last `<script>` from `index.html` and run `node --check` on it;
-load the page in Chromium (Playwright) and check for page errors.
+- **Run `node tests/check.mjs` before every push** (and `node tests/check.mjs preview` for a
+  preview). No dependencies. It recomputes golden doses/volumes with the app's own dose code,
+  checks drug-library doses match the protocols, data integrity, version sync, and that
+  `index.html` has no preview markers. Exit 1 = do not push. Only change a golden value for a
+  deliberate, author-approved dose change.
+- Also load the page in Chromium (Playwright) and check for page errors.
