@@ -6,11 +6,10 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.2.1" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.3.0" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
 <meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, aligned to IAP STG, WHO and AHA PALS.">
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0B1F3A">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -70,56 +69,73 @@ button{cursor:pointer}
 :root[data-app-theme="bright"] .phase h2,:root[data-app-theme="bright"] .dose .drug{font-weight:800}
 
 /* ---------- Top bar ---------- */
-.bar{position:sticky;top:0;z-index:20;background:var(--bar);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);
-  border-bottom:var(--bw) solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{position:sticky;top:0;z-index:20;background:#0B1F3A;color:#FFFFFF;border-bottom:1px solid #0B1F3A;padding-top:env(safe-area-inset-top,0px)}
+:root[data-app-theme="night"] .bar{border-bottom-color:#22304A}
 .barin{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand tools" "pt pt";align-items:center;gap:.5rem;padding:.625rem 1rem}
 .brand{grid-area:brand;display:flex;align-items:center;gap:.625rem;min-width:0;color:inherit;text-decoration:none}
 .brand>span{min-width:0}
 .brand svg{width:2.125rem;height:2.125rem;flex:none}
-.bname{display:block;font-weight:700;font-size:1rem;letter-spacing:-0.015em;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bsub{display:block;font-size:.75rem;color:var(--muted);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bname{display:block;color:#FFFFFF;font-weight:700;font-size:1rem;letter-spacing:-0.015em;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bsub{display:block;font-size:.75rem;color:rgba(255,255,255,.72);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ver{font-weight:600;color:var(--accent)}
+.bar .ver{color:#93C5FD}
 .tools{grid-area:tools;display:flex;gap:.375rem;align-items:center}
-.ibtn,.voice{height:2.5rem;min-width:2.5rem;display:inline-flex;align-items:center;justify-content:center;gap:.375rem;padding:0 .625rem;
-  border:var(--bw) solid var(--line);border-radius:.625rem;background:var(--surface);color:var(--ink);font-size:.875rem;font-weight:500}
-.ibtn svg,.voice svg{width:1.125rem;height:1.125rem;flex:none}
-.ibtn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
-.voice[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.ibtn,.voice,.newpt{height:max(2.75rem,44px);min-width:max(2.75rem,44px);display:inline-flex;align-items:center;justify-content:center;gap:.375rem;padding:0 .625rem;
+  border:1px solid rgba(255,255,255,.2);border-radius:.625rem;background:rgba(255,255,255,.08);color:#FFFFFF;font-size:.875rem;font-weight:500}
+.ibtn:hover,.voice:hover,.newpt:hover{background:rgba(255,255,255,.14)}
+.newpt{font-weight:600;padding:0 .75rem}
+.newpt .sm{display:none}
+.ibtn svg,.voice svg,.newpt svg{width:1.125rem;height:1.125rem;flex:none}
+.ibtn[aria-expanded="true"]{border-color:#93C5FD;color:#93C5FD}
+.voice[aria-pressed="true"]{background:#FFFFFF;border-color:#FFFFFF;color:#0B1F3A}
 .pt{grid-area:pt;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;min-width:0}
 .wt{display:flex;align-items:center;gap:.375rem;height:2.75rem;padding:0 .75rem;border:var(--bw) solid var(--line);border-radius:.625rem;background:var(--surface);cursor:text}
+.bar .wt{flex-direction:column;align-items:flex-start;justify-content:center;gap:0;height:max(3rem,46px);padding:0 .75rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#FFFFFF}
+.bar .wt .l{color:rgba(255,255,255,.7);font-size:.625rem;line-height:1.1}
+.bar .wv{display:flex;align-items:baseline;gap:.3125rem}
+.bar .wt b{color:rgba(255,255,255,.8)}
+.bar #w{color:#FFFFFF;font-size:1.375rem;line-height:1.15}
+.bar #w::placeholder{color:rgba(255,255,255,.45)}
+.bar .wt:focus-within{border-color:#93C5FD;box-shadow:0 0 0 3px rgba(147,197,253,.25)}
 .wt:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
 .wt .l{font-size:.6875rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 #w{width:2.7em;font-size:1.5rem;font-weight:700;border:0;background:transparent;text-align:right;padding:0;letter-spacing:-0.02em;-moz-appearance:textfield}
 #w::-webkit-inner-spin-button,#w::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 #w:focus-visible{outline:none}
 .wt b{font-size:.875rem;color:var(--muted);font-weight:500}
-#age{height:2.75rem;max-width:10rem;padding:0 .5rem;border:var(--bw) solid var(--line);border-radius:.625rem;background:var(--surface);font-size:.875rem;color:var(--ink)}
+#age{height:max(3rem,46px);max-width:8.5rem;padding:0 .5rem;border:1px solid rgba(255,255,255,.2);border-radius:.625rem;background:rgba(255,255,255,.08);font-size:.875rem;color:#FFFFFF}
+#age option{color:#0F172A;background:#FFFFFF}
 #wnote:empty{display:none}
 .pill{display:inline-block;font-size:.75rem;font-weight:600;padding:.25rem .625rem;border-radius:99px;line-height:1.3}
 .pill.est{background:var(--warn-bg);color:var(--warn-ink)}
 .pill.bad{background:var(--alarm-bg);color:var(--alarm-ink)}
-.vstat{display:none;padding:0 1rem .5rem;font-size:.8125rem;color:var(--muted)}
+.vstat{display:none;padding:0 1rem .5rem;font-size:.8125rem;color:rgba(255,255,255,.75)}
 .vstat.on{display:block}
-.vstat strong{color:var(--ink)}
+.vstat strong{color:#FFFFFF}
 @media (min-width:760px){
   .barin{grid-template-columns:auto auto minmax(0,1fr) auto;grid-template-areas:"brand pt . tools";column-gap:1.25rem}
 }
+@media (min-width:420px){ .newpt .sm{display:none} }
 @media (max-width:560px){
   .voice .lbl{display:none}
-  .ibtn,.voice{height:2.25rem;min-width:2.25rem;padding:0}
-  .tools{gap:.25rem}
+  .ibtn,.voice{padding:0}
+  .tools{gap:.3125rem}
   .brand{gap:.5rem} .brand svg{width:1.875rem;height:1.875rem}
   .bname{font-size:.9375rem}
 }
+@media (max-width:419px){
+  .newpt .lg{display:none} .newpt .sm{display:inline}
+  .tools .wide-only{display:none}
+}
 
 /* Display panel (text size, layout, theme) */
-.disp{position:absolute;right:1rem;top:calc(100% + .375rem);width:min(21rem,calc(100vw - 2rem));z-index:30;
+.disp{position:absolute;right:1rem;top:calc(100% + .375rem);width:min(21rem,calc(100vw - 2rem));z-index:30;color:var(--ink);
   background:var(--surface);border:var(--bw) solid var(--line);border-radius:.875rem;box-shadow:var(--pop);padding:.75rem .875rem .875rem}
 .disp h4{margin:.5rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .disp h4:first-child{margin-top:.125rem}
 .seg{display:flex;gap:.125rem;padding:.1875rem;background:var(--soft);border-radius:.625rem;border:var(--bw) solid transparent}
 :root[data-app-theme="bright"] .seg{border-color:var(--line)}
-.seg button{flex:1;min-height:2.25rem;border:0;border-radius:.5rem;background:transparent;font-size:.8125rem;font-weight:500;color:var(--muted);padding:0 .25rem}
+.seg button{flex:1;min-height:max(2.25rem,40px);border:0;border-radius:.5rem;background:transparent;font-size:.8125rem;font-weight:500;color:var(--muted);padding:0 .25rem}
 .seg button[aria-pressed="true"]{background:var(--pressed);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(15,23,42,.14)}
 :root[data-app-theme="bright"] .seg button[aria-pressed="true"]{color:#FFFFFF}
 .tsrow{display:flex;align-items:center;gap:.5rem}
@@ -127,6 +143,8 @@ button{cursor:pointer}
 .tsrow button:first-child{font-size:.8125rem} .tsrow button:last-child{font-size:1.0625rem}
 #tsVal{flex:1;text-align:center;font-weight:600;font-size:.9375rem}
 .disp .hint{margin:.5rem 0 0;font-size:.75rem;color:var(--muted)}
+.mlinks{display:grid;grid-template-columns:1fr 1fr;gap:.375rem}
+.mlinks a,.mlinks button{display:flex;align-items:center;justify-content:center;min-height:max(2.5rem,40px);border:var(--bw) solid var(--line);border-radius:.5rem;background:var(--surface);color:var(--ink);font-size:.8125rem;font-weight:600;text-decoration:none}
 
 /* ---------- Home ---------- */
 main{padding:1rem 1rem 2rem}
@@ -138,7 +156,7 @@ main{padding:1rem 1rem 2rem}
 .search input:focus-visible{outline:none}
 h2.sub{margin:1.375rem 0 .5rem;font-size:.6875rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem}
-.chip{min-height:2.5rem;padding:0 .875rem;border-radius:99px;border:var(--bw) solid var(--line);background:var(--surface);font-size:.875rem;font-weight:500;color:var(--ink)}
+.chip{min-height:max(2.5rem,40px);padding:0 .875rem;border-radius:99px;border:var(--bw) solid var(--line);background:var(--surface);font-size:.875rem;font-weight:500;color:var(--ink)}
 .chip:hover{border-color:var(--accent);color:var(--accent)}
 .bands{display:flex;flex-direction:column;gap:.75rem}
 .band{background:var(--surface);border:var(--bw) solid var(--line);border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow)}
@@ -148,7 +166,7 @@ h2.sub{margin:1.375rem 0 .5rem;font-size:.6875rem;font-weight:600;letter-spacing
 :root[data-app-theme="night"] .band h3{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--c) 55%,white)}
 :root[data-app-theme="bright"] .band h3{box-shadow:inset 6px 0 0 var(--c)}
 .band h3 span{min-width:1.5rem;text-align:center;padding:0 .4375rem;border-radius:99px;background:var(--soft);color:var(--muted);font-size:.6875rem;letter-spacing:0}
-.row{display:flex;width:100%;align-items:center;justify-content:space-between;gap:.5rem;min-height:2.875rem;padding:0 1rem;border:0;
+.row{display:flex;width:100%;align-items:center;justify-content:space-between;gap:.5rem;min-height:max(2.875rem,44px);padding:0 1rem;border:0;
   border-top:var(--bw) solid var(--line);background:transparent;text-align:left;font-size:.96875rem;font-weight:500;color:var(--ink)}
 .band h3+.row{border-top:0}
 .row:hover{background:var(--soft)}
@@ -165,7 +183,7 @@ h2.sub{margin:1.375rem 0 .5rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 /* ---------- Protocol ---------- */
 .phead{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
-.back,.pin{min-height:2.5rem;padding:0 .875rem;border-radius:.625rem;border:var(--bw) solid var(--line);background:var(--surface);font-size:.875rem;font-weight:500}
+.back,.pin{min-height:max(2.5rem,44px);padding:0 .875rem;border-radius:.625rem;border:var(--bw) solid var(--line);background:var(--surface);font-size:.875rem;font-weight:500}
 .pin[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);font-weight:600}
 .tag{display:inline-block;margin-top:1rem;padding:.1875rem .625rem;border-radius:99px;font-size:.75rem;font-weight:600;
   color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--surface))}
@@ -213,8 +231,9 @@ body.split .wrap{max-width:90rem}
 body.split main{display:grid;grid-template-columns:minmax(18rem,22rem) minmax(0,1fr);gap:1.75rem;align-items:start}
 body.split #home{position:sticky;top:calc(var(--barH,8rem) + 1rem);max-height:calc(100vh - var(--barH,8rem) - 1rem);overflow-y:auto;padding:0 .375rem 1.5rem 0;overscroll-behavior:contain}
 body.split .bands{display:flex;align-items:stretch}
-body.split .back{visibility:hidden}
 body.split #proto{border-left:var(--bw) solid var(--line);padding-left:1.75rem;min-height:70vh}
+body.wide .wrap{max-width:90rem}
+@media (min-width:1100px){ body.wide .bands{grid-template-columns:repeat(3,minmax(0,1fr))} }
 body.mode-mobile .wrap{max-width:36rem}
 body.mode-mobile .bands{display:flex;align-items:stretch}
 body.mode-mobile .phase{grid-template-columns:1fr}
@@ -227,7 +246,7 @@ body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-a
 
 /* ---------- v1.2: sections, drug library, scores ---------- */
 .tabs{margin-top:.875rem}
-.tabs button{min-height:2.5rem;font-size:.875rem;display:flex;align-items:center;justify-content:center;gap:.3125rem}
+.tabs button{min-height:max(2.5rem,44px);font-size:.875rem;display:flex;align-items:center;justify-content:center;gap:.3125rem}
 .tabs .cnt{font-size:.6875rem;font-weight:600;color:var(--muted);background:var(--soft);border-radius:99px;padding:0 .375rem}
 .tabs button[aria-pressed="true"] .cnt{background:color-mix(in srgb,var(--accent) 12%,var(--surface));color:var(--accent)}
 .newp{display:inline-block;margin-left:.375rem;padding:0 .375rem;border-radius:99px;background:var(--warn-bg);color:var(--warn-ink);font-size:.625rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle;line-height:1.6}
@@ -258,7 +277,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 .sq legend{padding:0;margin-bottom:.375rem;font-weight:600;font-size:.9375rem}
 .sopts{display:grid;gap:.375rem}
 .sopts.two{grid-template-columns:1fr 1fr}
-.sopt{display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:2.75rem;padding:.5rem .875rem;text-align:left;
+.sopt{display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:max(2.75rem,44px);padding:.5rem .875rem;text-align:left;
   border:var(--bw) solid var(--line);border-radius:.625rem;background:var(--surface);font-size:.9375rem;color:var(--ink)}
 .sopt b{color:var(--muted);font-weight:600}
 .sopt[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--surface));box-shadow:inset 3px 0 0 var(--accent);font-weight:600}
@@ -272,6 +291,31 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 .tbl th,.tbl td{padding:.5rem .625rem;border-bottom:var(--bw) solid var(--line);text-align:left;white-space:nowrap}
 .tbl th{font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .tbl td:not(:first-child){font-weight:600}
+
+/* ---------- v1.3: browse index, guide, toast ---------- */
+.idx{display:grid;gap:1rem;margin-top:1rem}
+@media (min-width:1000px){ body.wide .idx{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start} }
+.idxs{background:var(--surface);border:var(--bw) solid var(--line);border-radius:.75rem;padding:.875rem 1rem 1rem;box-shadow:var(--shadow)}
+.idxh{margin:0 0 .25rem;display:flex;align-items:center;justify-content:space-between;font-size:1rem;font-weight:700;letter-spacing:-0.01em}
+.idxh span{font-size:.75rem;font-weight:600;color:var(--muted);background:var(--soft);border-radius:99px;padding:0 .5rem}
+.idxg{margin-top:.75rem}
+.idxt{display:flex;align-items:center;gap:.4375rem;margin-bottom:.375rem;font-size:.6875rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.idxt::before{content:"";width:.5rem;height:.5rem;border-radius:2px;background:var(--c)}
+:root[data-app-theme="night"] .idxt::before{background:color-mix(in srgb,var(--c) 55%,white)}
+.ilinks{display:flex;flex-wrap:wrap;gap:.375rem}
+.ilink{min-height:max(2.25rem,36px);padding:0 .75rem;border-radius:99px;border:var(--bw) solid var(--line);background:var(--bg);font-size:.8125rem;font-weight:500;color:var(--ink)}
+.ilink:hover{border-color:var(--accent);color:var(--accent)}
+.ilink[aria-current="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent);font-weight:600}
+@media (max-width:420px){ .tabs .cnt{display:none} }
+.ovl{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(15,23,42,.6);overflow-y:auto}
+.ovl .gbox{border-color:var(--accent)}
+.ovl h2{margin:0 0 .25rem;font-size:1.125rem;font-weight:700;letter-spacing:-0.02em}
+.steps{margin:.5rem 0 .75rem;padding:0;list-style:none;counter-reset:st}
+.steps li{position:relative;margin:0 0 .5rem;padding-left:2rem;font-size:.84375rem;line-height:1.45;counter-increment:st}
+.steps li::before{content:counter(st);position:absolute;left:0;top:.0625rem;width:1.375rem;height:1.375rem;border-radius:50%;background:#0B1F3A;color:#FFFFFF;font-size:.6875rem;font-weight:700;display:grid;place-items:center}
+:root[data-app-theme="night"] .steps li::before{background:var(--accent);color:var(--on-accent)}
+.steps b{font-weight:700}
+.toast{position:fixed;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;max-width:calc(100vw - 2rem);padding:.625rem 1rem;border-radius:.75rem;background:#0B1F3A;color:#FFFFFF;font-size:.875rem;font-weight:500;box-shadow:var(--pop)}
 
 /* ---------- Footer ---------- */
 .site-foot{border-top:var(--bw) solid var(--line);background:var(--surface);padding:1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.8125rem}
@@ -315,7 +359,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.2.1</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.0</span></h2>
     </div>
     <p class="gsub">Paediatric emergency decision-support · IAP STG / WHO / AHA PALS-aligned</p>
     <div class="gcard">
@@ -335,21 +379,42 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   </div>
 </div>
 
+<div class="ovl" id="guide" role="dialog" aria-modal="true" aria-labelledby="guideTitle" hidden>
+  <div class="gbox">
+    <h2 id="guideTitle">How to use</h2>
+    <ol class="steps">
+      <li><b>Enter the weight</b> — type it, or pick an age for an estimate (marked "Estimated").</li>
+      <li><b>Find what you need</b> — search, or browse All, Protocols, Drugs or Scores.</li>
+      <li><b>Read a dose card</b> — the big number is the dose for this child; below it are the per-kg rule, maximum and route. "= X ml of …" is the volume to draw up for that strength.</li>
+      <li><b>Check the strength</b> — amber "Concentration check" boxes flag look-alike ampoules.</li>
+      <li><b>Scores</b> — tap one answer per item; the result appears when all are answered.</li>
+      <li><b>Voice</b> — tap the mic, then say "open DKA", "weight 12", "read", "next" or "stop".</li>
+      <li><b>Menu (≡)</b> — text size, layout (Mobile / Tablet / Landscape) and colour mode.</li>
+      <li><b>New patient</b> — clears the weight and answers. Patient details are kept only while the app is open.</li>
+      <li><b>Install</b> — browser menu → "Add to Home screen". Works offline after the first open.</li>
+    </ol>
+    <button class="gok" id="guideOk" type="button">Got it</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
 <header class="bar">
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.2.1</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.0</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
-      <label class="wt"><span class="l">Weight</span><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></label>
+      <label class="wt"><span class="l">Weight</span><span class="wv"><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></span></label>
       <select id="age" aria-label="Estimate weight from age"><option value="">Age → est. wt</option></select>
+      <button class="newpt" id="newPt" type="button" title="Clear weight and answers for the next patient"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg><span class="lg">New patient</span><span class="sm">New</span></button>
       <span id="wnote" aria-live="polite"></span>
     </div>
     <div class="tools">
+      <button class="ibtn wide-only" type="button" data-guide title="How to use" aria-label="How to use"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5h.01"/></svg></button>
       <button class="voice" id="voiceBtn" type="button" aria-pressed="false" title="Voice commands and read-aloud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg><span class="lbl" id="voiceLbl">Voice off</span></button>
-      <button class="ibtn" id="themeBtn" type="button" title="Colour mode" aria-label="Colour mode"></button>
-      <button class="ibtn" id="dispBtn" type="button" aria-expanded="false" aria-controls="disp" title="Text size and layout" aria-label="Text size and layout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l5-14 5 14M4.8 14h6.4M15 19l3-8 3 8M15.9 16.6h4.2"/></svg></button>
+      <button class="ibtn wide-only" id="themeBtn" type="button" title="Colour mode" aria-label="Colour mode"></button>
+      <button class="ibtn" id="dispBtn" type="button" aria-expanded="false" aria-controls="disp" title="Menu: text size, layout, colour mode, help" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
     <div class="disp" id="disp" hidden>
       <h4>Text size</h4>
@@ -363,6 +428,8 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
       <div class="seg" role="group" aria-label="Colour mode">
         <button type="button" data-set-theme="night">Night</button><button type="button" data-set-theme="day">Day</button><button type="button" data-set-theme="bright">Bright</button>
       </div>
+      <h4>Help</h4>
+      <div class="mlinks"><button type="button" data-guide>How to use</button><button type="button" data-disclaimer>Disclaimer</button><a href="about.html">About</a><a href="privacy.html">Privacy</a></div>
     </div>
   </div>
   <div class="vstat wrap" id="vstat" aria-live="polite"></div>
@@ -378,8 +445,8 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.2.1</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
-    <p>Decision-support aid for trained clinicians. Verify every dose against the current IAP STG and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button></p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.0</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
+    <p>Decision-support aid for trained clinicians. Verify every dose against the current IAP STG and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button> · <button class="linkbtn" type="button" data-guide>How to use</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
       <span><span class="t">Code Blue Companion</span><span class="d">cbc.pediaos.com · paediatric resuscitation console</span></span>
@@ -800,7 +867,7 @@ const KW = {
 /* ======================================================================
    v1.2 additions — 12 protocols. Kept separate from the original data above.
    ====================================================================== */
-const NEWP = new Set(["brady","fbao","icp","hi","mening","burns","pois","pcm","na","hypoca","adrenal","htn"]);
+const NEWP = new Set([]);   // protocol ids to mark "New" in a preview build (v1.2 additions are live)
 P.push(
 { id:"brady", name:"Bradycardia", src:"Aligned to AHA PALS 2020 bradycardia algorithm",
   phases:[
@@ -1514,9 +1581,10 @@ let est=false, layout="auto", tscale=1;
 
 /* ---------- sections: protocols / drugs / scores ---------- */
 const PREVIEW = false;  // true only in preview.html builds: "New" markers + review banner.
-let sec="p", det=null, curD=null, curS=null, tbsa="";
+const NEWSEC = new Set([]);   // sections ("d","s") to mark new in a preview build
+let sec="a", det=null, curD=null, curS=null, tbsa="";
 const SA = {};          // score answers (in memory only — patient-specific)
-const SECS = [{id:"p", l:"Protocols", n:()=>P.length}, {id:"d", l:"Drugs", n:()=>DRUGS.length}, {id:"s", l:"Scores", n:()=>SCORES.length}];
+const SECS = [{id:"a", l:"All", n:()=>P.length+DRUGS.length+SCORES.length}, {id:"p", l:"Protocols", n:()=>P.length}, {id:"d", l:"Drugs", n:()=>DRUGS.length}, {id:"s", l:"Scores", n:()=>SCORES.length}];
 const dById = id=>DRUGS.find(d=>d.id===id), sById = id=>SCORES.find(s=>s.id===id), clsOf = id=>DCLS.find(c=>c.id===id);
 const newPill = on => PREVIEW&&on ? `<span class="newp">New</span>` : "";
 const refsHTML = rs => `<section class="refs"><h2>References</h2><ol>${rs.map(r=>`<li><a href="${r.u}" target="_blank" rel="noopener">${esc(r.t)}</a><small>${esc(r.s)}</small></li>`).join("")}</ol></section>`;
@@ -1548,8 +1616,18 @@ function renderHome(){
     if(m.d.length) h += `<h2 class="sub">Drugs</h2><div class="band">${m.d.map(d=>rowD(d, clsOf(d.cls).name)).join("")}</div>`;
     if(m.s.length) h += `<h2 class="sub">Scores &amp; calculators</h2><div class="band">${m.s.map(s=>rowS(s, s.grp==="calc"?"Calculator":"Score")).join("")}</div>`;
   } else {
-    h += `<div class="seg tabs" role="tablist" aria-label="Sections">${SECS.map(s=>`<button type="button" role="tab" data-sec="${s.id}" aria-selected="${sec===s.id}" aria-pressed="${sec===s.id}">${s.l}<span class="cnt">${s.n()}</span>${PREVIEW&&s.id!=="p"?'<span class="newdot" title="New"></span>':""}</button>`).join("")}</div>`;
-    if(sec==="p"){
+    h += `<div class="seg tabs" role="tablist" aria-label="Sections">${SECS.map(s=>`<button type="button" role="tab" data-sec="${s.id}" aria-selected="${sec===s.id}" aria-pressed="${sec===s.id}">${s.l}<span class="cnt">${s.n()}</span>${PREVIEW&&NEWSEC.has(s.id)?'<span class="newdot" title="New"></span>':""}</button>`).join("")}</div>`;
+    if(sec==="a"){
+      const il = (a,id,label,on) => `<button class="ilink" data-${a}="${id}"${on?' aria-current="true"':''}>${label}</button>`;
+      const ig = (name,c,links) => links.length ? `<div class="idxg"><div class="idxt" style="--c:${c}">${esc(name)}</div><div class="ilinks">${links.join("")}</div></div>` : "";
+      const is = (title,n,groups) => `<section class="idxs"><h2 class="idxh">${title}<span>${n}</span></h2>${groups.join("")}</section>`;
+      if(pins.length) h += `<h2 class="sub">Pinned</h2><div class="chips">${pins.filter(byId).map(id=>`<button class="chip" data-open="${id}">${byId(id).name}</button>`).join("")}</div>`;
+      h += `<div class="idx">` +
+        is("Protocols", P.length, G.map(g=>ig(g.name, g.c, g.ids.map(id=>il("open", id, byId(id).name, det==="p"&&cur===id))))) +
+        is("Drugs", DRUGS.length, DCLS.map(c=>ig(c.name, c.c, DRUGS.filter(d=>d.cls===c.id).sort((a,b)=>a.n.localeCompare(b.n)).map(d=>il("opend", d.id, d.n, det==="d"&&curD===d.id))))) +
+        is("Scores &amp; calculators", SCORES.length, [["Scores","#0E7490","score"],["Calculators & reference","#475467","calc"]].map(([nm,c,gp])=>ig(nm, c, SCORES.filter(s=>s.grp===gp).map(s=>il("opens", s.id, s.n, det==="s"&&curS===s.id))))) +
+        `</div>`;
+    } else if(sec==="p"){
       if(pins.length) h += `<h2 class="sub">Pinned</h2><div class="chips">${pins.filter(byId).map(id=>`<button class="chip" data-open="${id}">${byId(id).name}</button>`).join("")}</div>`;
       h += `<h2 class="sub">Browse by system</h2><div class="bands">` + G.map(g=>band(g.name, g.c, g.ids.map(id=>rowP(id)).join(""), g.ids.length)).join("") + `</div>`;
     } else if(sec==="d"){
@@ -1608,7 +1686,7 @@ function renderDrug(){
   $("#proto").innerHTML = `<div class="phead"><button class="back" data-home>← All drugs</button></div>
     <span class="tag" style="--c:${c.c}">${esc(c.name)}</span>
     <h1>${d.n}</h1><p class="src">${d.aka?`Also called ${d.aka}`:"&nbsp;"}</p>` +
-    (PREVIEW ? `<div class="pvnote">Drug library is new — pending review by Dr Vignesh N.</div>` : "") +
+    (PREVIEW&&NEWSEC.has("d") ? `<div class="pvnote">Drug library is new — pending review by Dr Vignesh N.</div>` : "") +
     wtNote() +
     (forms.length ? `<div class="forms"><span class="fl">Strength</span>${forms.map(fm=>`<span class="fchip">${fm.l}</span>`).join("")}</div>` : "") +
     (d.cc ? `<div class="ccheck"><b>Concentration check.</b> ${d.cc}</div>` : "") +
@@ -1666,7 +1744,7 @@ function renderScore(){
   $("#proto").innerHTML = `<div class="phead"><button class="back" data-home>← All scores</button></div>
     <span class="tag" style="--c:${s.grp==="calc"?"#475467":"#0E7490"}">${s.grp==="calc"?"Calculator / reference":"Score"}</span>
     <h1>${s.n}</h1><p class="src">${s.d}</p>` +
-    (PREVIEW ? `<div class="pvnote">Scores are new — pending review by Dr Vignesh N.</div>` : "") +
+    (PREVIEW&&NEWSEC.has("s") ? `<div class="pvnote">Scores are new — pending review by Dr Vignesh N.</div>` : "") +
     (s.calc ? calcHTML(s) : scoreBody(s)) +
     (s.foot ? `<p class="foot">${s.foot}</p>` : "") + refsHTML(s.refs||[]);
 }
@@ -1690,8 +1768,9 @@ function renderDetail(){
 }
 function refresh(){ if(det) renderDetail(); }
 function show(v){
-  const split = isSplit(), b = document.body;
+  const can = isSplit(), split = can && !!det, b = document.body;   // full-width list until something is opened
   b.classList.toggle("split", split);
+  b.classList.toggle("wide", can && !det);
   b.classList.toggle("mode-mobile", layout==="mobile");
   b.classList.toggle("mode-land", layout==="land");
   $("#home").hidden = !split && v!=="home";
@@ -1703,11 +1782,40 @@ function show(v){
 }
 function setBarH(){ document.documentElement.style.setProperty("--barH", $(".bar").offsetHeight+"px"); }
 splitMQ.addEventListener("change",()=>{ setBarH(); show(det?"proto":"home"); });
-addEventListener("resize",()=>{ setBarH(); if(isSplit()!==document.body.classList.contains("split")) show(det?"proto":"home"); });
-function openP(id){ cur=id; det="p"; sec="p"; curD=curS=null; speakIdx=0; save(); show("proto"); }
-function openD(id){ stopSpeech(); cur=null; det="d"; sec="d"; curD=id; curS=null; save(); show("proto"); }
-function openS(id){ stopSpeech(); cur=null; det="s"; sec="s"; curS=id; curD=null; save(); show("proto"); }
-function goHome(){ cur=null; det=null; curD=curS=null; stopSpeech(); show("home"); }
+addEventListener("resize",()=>{ setBarH(); const b=document.body; if((isSplit()&&!!det)!==b.classList.contains("split") || (isSplit()&&!det)!==b.classList.contains("wide")) show(det?"proto":"home"); });
+/* ---------- navigation: the open page lives in the URL (#p/dka, #d/adr, #s/gcs) so refresh keeps it and the back button works ---------- */
+function nav(h){
+  const now = location.hash.replace(/^#/,"");
+  if(now!==h) history.pushState({app:1, prev:now}, "", h ? "#"+h : location.pathname+location.search);
+  route();
+}
+function route(){
+  const m = location.hash.match(/^#([pds])\/([\w-]+)$/), t = m&&m[1], id = m&&m[2];
+  if(t==="p" && byId(id)){ if(cur!==id) speakIdx=0; cur=id; det="p"; curD=curS=null; }
+  else if(t==="d" && dById(id)){ stopSpeech(); cur=null; det="d"; curD=id; curS=null; }
+  else if(t==="s" && sById(id)){ stopSpeech(); cur=null; det="s"; curS=id; curD=null; }
+  else { if(det) stopSpeech(); cur=null; det=null; curD=curS=null; }
+  show(det?"proto":"home");
+}
+addEventListener("popstate", route);
+function openP(id){ nav("p/"+id); }
+function openD(id){ nav("d/"+id); }
+function openS(id){ nav("s/"+id); }
+function goHome(){ if(history.state && history.state.app && history.state.prev==="") history.back(); else nav(""); }
+
+/* ---------- new patient, toast, how-to guide ---------- */
+let toastT=null;
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>{ t.hidden=true; }, 2600); }
+function newPatient(){
+  W=null; est=false; wIn.value=""; $("#age").value=""; tbsa="";
+  Object.keys(SA).forEach(k=>delete SA[k]);
+  try{ sessionStorage.removeItem("percPt"); }catch(e){}
+  stopSpeech(); save(); wNote(); nav("");
+  toast("New patient — weight and answers cleared");
+  wIn.focus({preventScroll:true});
+}
+function openGuide(){ toggleDisp(false); $("#guide").hidden=false; document.body.classList.add("gated"); $("#guideOk").focus({preventScroll:true}); }
+function closeGuide(){ $("#guide").hidden=true; document.body.classList.remove("gated"); try{ localStorage.setItem("percGuide","1"); }catch(e){} }
 function applyLayoutBtns(){ document.querySelectorAll("[data-layout]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.layout===layout)); }
 
 /* ---------- colour mode ---------- */
@@ -1751,6 +1859,7 @@ function toggleDisp(open){
 /* ---------- disclaimer (once per browser session = every app launch) ---------- */
 function openGate(){ toggleDisp(false); document.documentElement.removeAttribute("data-ack"); $("#gate").hidden=false; document.body.classList.add("gated"); $("#gateOk").focus({preventScroll:true}); }
 function closeGate(){ $("#gate").hidden=true; document.body.classList.remove("gated"); try{ sessionStorage.setItem("percAck","1"); }catch(e){} }
+function firstRunGuide(){ let seen=null; try{ seen=localStorage.getItem("percGuide"); }catch(e){} if(!seen) openGuide(); }
 
 /* ---------- speech out ---------- */
 let speaking=false;
@@ -1860,8 +1969,8 @@ document.addEventListener("click",e=>{
   const od=e.target.closest("[data-opend]"); if(od){ openD(od.dataset.opend); return; }
   const os=e.target.closest("[data-opens]"); if(os){ openS(os.dataset.opens); return; }
   const sc=e.target.closest("[data-sec]"); if(sc){ sec=sc.dataset.sec; save(); renderHome(); return; }
-  const sa=e.target.closest("[data-sa]"); if(sa){ const [i,v]=sa.dataset.sa.split(":").map(Number); SA[curS].v[i]=v; renderScore(); return; }
-  if(e.target.closest("[data-sclear]")){ SA[curS]={young:SA[curS].young, v:[]}; renderScore(); return; }
+  const sa=e.target.closest("[data-sa]"); if(sa){ const [i,v]=sa.dataset.sa.split(":").map(Number); SA[curS].v[i]=v; save(); renderScore(); return; }
+  if(e.target.closest("[data-sclear]")){ SA[curS]={young:SA[curS].young, v:[]}; save(); renderScore(); return; }
   if(e.target.closest("[data-home]")){ goHome(); return; }
   if(e.target.closest("[data-pin]")){ pins = pins.includes(cur)?pins.filter(x=>x!==cur):[...pins,cur]; save(); renderProto(); return; }
   const s=e.target.closest("[data-say]"); if(s){ readPhase(+s.dataset.say); return; }
@@ -1869,25 +1978,34 @@ document.addEventListener("click",e=>{
   const ly=e.target.closest("[data-layout]"); if(ly){ layout=ly.dataset.layout; save(); applyLayoutBtns(); show(cur?"proto":"home"); return; }
   const tz=e.target.closest("[data-ts]"); if(tz){ stepTS(+tz.dataset.ts); return; }
   if(e.target.closest("[data-disclaimer]")){ openGate(); return; }
+  if(e.target.closest("[data-guide]")){ openGuide(); return; }
 });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !$("#disp").hidden){ toggleDisp(false); $("#dispBtn").focus(); } });
-document.addEventListener("change",e=>{ if(e.target.matches("[data-stog]")){ SA[curS]={young:e.target.checked, v:[]}; renderScore(); } });
-document.addEventListener("input",e=>{ if(e.target.id==="tbsa"){ tbsa=e.target.value; $("#calcOut").innerHTML=burnsOut(); } });
+document.addEventListener("keydown",e=>{ if(e.key!=="Escape") return; if(!$("#guide").hidden){ closeGuide(); return; } if(!$("#disp").hidden){ toggleDisp(false); $("#dispBtn").focus(); } });
+document.addEventListener("change",e=>{ if(e.target.matches("[data-stog]")){ SA[curS]={young:e.target.checked, v:[]}; save(); renderScore(); } });
+document.addEventListener("input",e=>{ if(e.target.id==="tbsa"){ tbsa=e.target.value; save(); $("#calcOut").innerHTML=burnsOut(); } });
 $("#voiceBtn").addEventListener("click",()=>setVoice(!voiceOn));
 $("#themeBtn").addEventListener("click",()=>{ theme = THEMES[(THEMES.indexOf(effTheme())+1)%THEMES.length]; save(); applyTheme(); });
 $("#dispBtn").addEventListener("click",()=>toggleDisp($("#disp").hidden));
-$("#gateOk").addEventListener("click",closeGate);
+$("#gateOk").addEventListener("click",()=>{ closeGate(); firstRunGuide(); });
+$("#guideOk").addEventListener("click",closeGuide);
+$("#newPt").addEventListener("click",newPatient);
 
-function save(){ try{ localStorage.setItem("perc",JSON.stringify({W,est,age:$("#age").value,pins,theme,layout,ts:tscale,sec})) }catch(e){} }
+function save(){
+  try{ localStorage.setItem("perc",JSON.stringify({pins,theme,layout,ts:tscale,sec})) }catch(e){}
+  try{ sessionStorage.setItem("percPt",JSON.stringify({W,est,age:$("#age").value,SA,tbsa})) }catch(e){}
+}
+try{ const t=JSON.parse(sessionStorage.getItem("percPt")||"null");
+  if(t){ if(t.W){W=t.W; wIn.value=t.W; est=!!t.est; if(est && t.age) $("#age").value=t.age;}
+    if(t.SA) Object.assign(SA, t.SA); if(t.tbsa) tbsa=t.tbsa; } }catch(e){}
 try{ const s=JSON.parse(localStorage.getItem("perc")||"null");
-  if(s){ if(s.W){W=s.W; wIn.value=s.W; est=!!s.est; if(est && s.age) $("#age").value=s.age;}
-    if(Array.isArray(s.pins)) pins=s.pins; if(s.theme) theme=s.theme;
-    if(LAYOUTS.includes(s.layout)) layout=s.layout; if(["p","d","s"].includes(s.sec)) sec=s.sec; if(TS.includes(s.ts)) tscale=s.ts; } }catch(e){}
+  if(s){ if(Array.isArray(s.pins)) pins=s.pins; if(s.theme) theme=s.theme;
+    if(LAYOUTS.includes(s.layout)) layout=s.layout; if(["a","p","d","s"].includes(s.sec)) sec=s.sec; if(TS.includes(s.ts)) tscale=s.ts; } }catch(e){}
 applyTheme();
 applyTS();
 applyLayoutBtns();
 wNote();
-show("home");
+save();   // drops any weight left in long-term storage by older versions
+route();
 if(document.documentElement.hasAttribute("data-ack")) closeGate(); else $("#gateOk").focus({preventScroll:true});
 if("serviceWorker" in navigator) addEventListener("load",()=>{ navigator.serviceWorker.register("sw.js").catch(()=>{}); });
 </script>

@@ -31,12 +31,12 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
   flags it) | voice, colour-mode, Aa (text size + layout panel `#disp`).
 - Layouts: Auto / Mobile / Tablet (list beside protocol) / Landscape (also 2-column phases).
 - Weight checks: outside 0.5–150 kg is rejected; <2 or >100 kg shows "verify".
-- (v1.3) Navigation lives in the URL hash — `#p/<id>`, `#d/<id>`, `#s/<id>` — via `nav()` /
+- Navigation lives in the URL hash — `#p/<id>`, `#d/<id>`, `#s/<id>` — via `nav()` /
   `route()` / `popstate`, so refresh keeps the page and the phone back button works.
-- (v1.3) Storage: preferences (pins, theme, layout, text size, tab) in `localStorage perc`;
+- Storage: preferences (pins, theme, layout, text size, tab) in `localStorage perc`;
   patient data (weight, est, age, score answers, TBSA) in `sessionStorage percPt` only — cleared
   when the app is closed or by **New patient**. Never put patient data in localStorage.
-- (v1.3) Tablet/desktop start full-width (`body.wide`, All index in 3 columns) and switch to the
+- Tablet/desktop start full-width (`body.wide`, All index in 3 columns) and switch to the
   split view only once something is open. "How to use" guide `#guide` shows once ever
   (`localStorage percGuide`), reopenable from the menu (≡), the ? button and the footer.
 
@@ -53,7 +53,7 @@ protocol/feature → minor.
   reviews it at https://er.pediaos.com/preview.html. `sw.js` never caches `preview.html`.
 - Go live only when the author approves: copy `preview.html` → `index.html`, set
   `PREVIEW = false`, remove the `.pvbanner` div and the `robots` meta, bump versions, and
-  delete `preview.html`. (v1.2.0 went live this way on 2 Oct 2026.)
+  delete `preview.html`. (v1.2.0 and v1.3.0 went live this way on 2 Oct 2026.)
 - Since v1.2 the added data sits after the original `KW` block: `NEWP` (new protocol ids),
   `DRUGS` / `DCLS` (drug library; `forms` give strengths so volumes are computed when a
   use's unit matches), `SCORES` (scores need every item answered before a result shows;
