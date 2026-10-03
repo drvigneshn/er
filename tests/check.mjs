@@ -40,6 +40,16 @@ const golden = [
   ["pcm", "NAC bag 1", 12, "1,800 mg"],
   ["na", "3% saline", 12, "24 ml"],
   ["mening", "Dexamethasone", 12, "1.8 mg"],
+  // v1.3.2 author-approved alignments (AES 2016, GINA, Eddleston/WHO, 1 L bolus cap, atropine 0.5 mg)
+  ["se", "Diazepam", 12, "1.8–2.4 mg"],
+  ["asthma", "Prednisolone (under 2 y)", 12, "12–20 mg"],
+  ["asthma", "Prednisolone (2–5 y)", 18, "18–30 mg"],
+  ["asthma", "Prednisolone (6 y and over)", 25, "25–40 mg"],
+  ["op", "Pralidoxime loading", 12, "360 mg"],
+  ["op", "Pralidoxime infusion", 12, "96 mg/h"],
+  ["ana", "NS bolus", 60, "1,000 ml"],
+  ["dka", "NS bolus", 70, "700–1,000 ml"],
+  ["snake", "Atropine (before neostigmine)", 30, "0.5 mg"],
 ];
 for (const [pid, name, w, want] of golden) {
   const it = items(prot(pid)).find(i => i.d && i.d.startsWith(name));

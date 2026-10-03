@@ -6,9 +6,9 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.3.1" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.3.2" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
-<meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, aligned to IAP STG, WHO and AHA PALS.">
+<meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, based on international paediatric guidelines.">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -354,12 +354,17 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 .gcard{background:var(--soft);border-radius:.75rem;padding:.5rem .75rem;line-height:1.4}
 .gcard .who{font-weight:700}
 .gcard .where{font-size:.75rem;color:var(--muted)}
-.gcard .award{margin-top:.25rem;font-size:.75rem;font-weight:600;color:var(--accent)}
+.gcard .award{font-weight:600;color:var(--accent)}
+.gcard .mentors{margin-top:.1875rem;font-size:.6875rem;line-height:1.35;color:var(--muted)}
 .gbox h3{margin:.75rem 0 .25rem;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--alarm)}
 .gbox p{margin:0 0 .5rem;font-size:.875rem;line-height:1.5}
 .gbox .verify{color:var(--alarm);font-weight:700}
 .gact{margin-top:.25rem}
 .gok{width:100%;min-height:3rem;border:0;border-radius:.75rem;background:var(--accent);color:var(--on-accent);font-size:1.0625rem;font-weight:700}
+@media (max-height:700px){
+  .gbox{padding:.75rem .875rem .625rem} .ghead svg{width:2rem;height:2rem} .gsub{margin:.25rem 0 .5rem}
+  .gbox h3{margin:.5rem 0 .1875rem} .gbox p{font-size:.78125rem;line-height:1.45;margin-bottom:.375rem} .gok{min-height:2.875rem}
+}
 .gfoot{margin:.625rem 0 0!important;text-align:center;font-size:.75rem!important;color:var(--muted)}
 </style>
 </head>
@@ -369,22 +374,22 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.1</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.2</span></h2>
     </div>
-    <p class="gsub">Paediatric emergency decision-support · IAP STG / WHO / AHA PALS-aligned</p>
+    <p class="gsub">Paediatric emergency decision-support · international guideline-based</p>
     <div class="gcard">
       <div class="who">Created by Dr Vignesh N</div>
-      <div class="where">Kanchi Kamakoti CHILDS Trust Hospital, Chennai</div>
-      <div class="award">Creator of Code Blue Companion · cbc.pediaos.com</div>
+      <div class="where">Kanchi Kamakoti CHILDS Trust Hospital, Chennai · <span class="award">Creator of Code Blue Companion</span></div>
+      <div class="mentors">Mentors: Dr Janani Sankar (Medical Director) · Dr Radhika Raman (Senior Consultant, Paediatric Emergency), KKCTH</div>
     </div>
     <h3>Disclaimer</h3>
-    <p>A <b>decision-support aid for trained clinicians</b>. It calculates weight-based doses aligned with IAP STG, WHO and AHA PALS 2020.</p>
-    <p><b>Independently verify every dose, volume and rate before giving it.</b> This tool aids recall and calculation only — it is not a medical device and does not replace clinical judgment. The treating clinician remains fully responsible.</p>
-    <p><b>Scope:</b> infants and children; doses capped at adult maximums. Not for neonatal (NRP / NICU) care. Nothing you enter leaves this device.</p>
+    <p>A <b>decision-support aid for trained clinicians</b>: weight-based doses from international paediatric guidelines, cited on every page.</p>
+    <p><b>Independently verify every dose, volume and rate before giving it.</b> It aids recall and calculation only — not a medical device, not a substitute for clinical judgment. The treating clinician remains fully responsible.</p>
+    <p><b>Scope:</b> infants and children, not neonatal (NRP / NICU) care. Doses stop at the paediatric maximum single dose. Nothing you enter leaves this device.</p>
     <p class="verify">Verify every dose before administration.</p>
     <div class="gact">
       <button class="gok" id="gateOk" type="button">I understand — enter</button>
-      <p class="gfoot">Decision-support aid · not for autonomous clinical use · © 2026 Dr Vignesh N, KKCTH</p>
+      <p class="gfoot">Not for autonomous clinical use · © 2026 Dr Vignesh N, KKCTH</p>
     </div>
   </div>
 </div>
@@ -412,7 +417,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.1</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.2</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
       <label class="wt"><span class="l">Weight</span><span class="wv"><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></span></label>
@@ -455,8 +460,8 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.1</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
-    <p>Decision-support aid for trained clinicians. Verify every dose against the current IAP STG and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button> · <button class="linkbtn" type="button" data-guide>How to use</button></p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.2</span> · Created by <strong>Dr Vignesh N</strong>, Kanchi Kamakoti CHILDS Trust Hospital, Chennai</p>
+    <p>Decision-support aid for trained clinicians. Verify every dose against the cited guidelines and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button> · <button class="linkbtn" type="button" data-guide>How to use</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
       <span><span class="t">Code Blue Companion</span><span class="d">cbc.pediaos.com · paediatric resuscitation console</span></span>
@@ -468,7 +473,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 <script>
 const P = [
-{ id:"se", name:"Status epilepticus", src:"Aligned to IAP STG / AES 2016 staged approach",
+{ id:"se", name:"Status epilepticus", src:"Based on AES 2016 guideline / ESETT and EcLiPSE trials",
   phases:[
   {t:"0–5 min", h:"Stabilise", items:[
     "Airway, O₂, suction, recovery position. Monitor SpO₂, HR.",
@@ -479,7 +484,7 @@ const P = [
     {d:"Lorazepam", per:0.1, u:"mg", max:4, r:"IV"},
     {d:"Midazolam", per:0.2, u:"mg", max:10, r:"IV / IM"},
     {d:"Midazolam", per:0.3, u:"mg", max:10, r:"Intranasal / buccal", n:"When no IV access"},
-    {d:"Diazepam", per:0.3, u:"mg", max:10, r:"IV (0.5 mg/kg PR, max 20)"},
+    {d:"Diazepam", per:[0.15,0.2], u:"mg", max:10, r:"IV (0.5 mg/kg PR, max 20)"},
     "Repeat benzodiazepine once after 5–10 min if still seizing. Max two doses including pre-hospital."
   ]},
   {t:"20–40 min", h:"Second line: pick one", items:[
@@ -495,7 +500,7 @@ const P = [
     {rec:w=>`Midazolam infusion: ${f(3*w)} mg in 50 ml NS → 1 ml/h = 1 µg/kg/min. Start 1–2, titrate up to 24 µg/kg/min.`}
   ]}
 ]},
-{ id:"ana", name:"Anaphylaxis", src:"Aligned to IAP STG / WAO guidance",
+{ id:"ana", name:"Anaphylaxis", src:"Aligned to WAO 2020 guidance / AAAAI–ACAAI 2020 practice parameter",
   phases:[
   {t:"Immediately", h:"Adrenaline IM first", items:[
     {d:"Adrenaline 1 mg/ml (1:1000)", per:0.01, u:"mg", max:0.5, r:"IM, anterolateral thigh", c:1, n:"Repeat every 5 min if no improvement"},
@@ -503,7 +508,7 @@ const P = [
     "Remove trigger. Lie flat with legs raised (sit up if breathless). High-flow O₂."
   ]},
   {t:"Next 5–15 min", h:"Support circulation and airway", items:[
-    {d:"NS bolus (if hypotension / poor perfusion)", per:20, u:"ml", r:"IV/IO, repeat as needed"},
+    {d:"NS bolus (if hypotension / poor perfusion)", per:20, u:"ml", max:1000, r:"IV/IO, repeat as needed"},
     {d:"Salbutamol neb", fixed:"2.5 mg (<5 y) / 5 mg (≥5 y)", r:"Neb, for bronchospasm"},
     "Stridor: nebulised adrenaline 1 mg/ml, 0.5 ml/kg (max 5 ml)."
   ]},
@@ -517,7 +522,7 @@ const P = [
     "Observe at least 6 h (longer if severe or needed >1 dose). Discharge with adrenaline plan and allergy referral."
   ]}
 ]},
-{ id:"dka", name:"DKA", src:"Aligned to ISPAD 2022 / IAP STG",
+{ id:"dka", name:"DKA", src:"Aligned to ISPAD 2022 / PECARN FLUID trial",
   phases:[
   {t:"Hour 0", h:"Confirm and assess", items:[
     "Glucose >200 mg/dL, pH <7.3 or HCO₃ <18, ketonaemia / ketonuria.",
@@ -525,7 +530,7 @@ const P = [
     "Send VBG, electrolytes, urea, creatinine, CBC; hourly glucose, ECG for K."
   ]},
   {t:"Hour 0–1", h:"Fluids", items:[
-    {d:"NS bolus", per:[10,20], u:"ml", r:"IV over 20–30 min", n:"In shock: 20 ml/kg rapidly, reassess"},
+    {d:"NS bolus", per:[10,20], u:"ml", max:1000, r:"IV over 20–30 min", n:"In shock: 20 ml/kg rapidly, reassess"},
     {rec:w=>`Deficit ${f(w*50)}–${f(w*100)} ml (5–10%) replaced evenly over 24–48 h, plus maintenance. Use 0.45–0.9% saline.`}
   ]},
   {t:"Hour 1–2", h:"Insulin and potassium", items:[
@@ -541,14 +546,14 @@ const P = [
     "Reduce fluid rate by one-third, raise head end, call PICU."
   ]}
 ]},
-{ id:"ss", name:"Septic shock", src:"Aligned to IAP STG / Surviving Sepsis Campaign Pediatrics 2020",
+{ id:"ss", name:"Septic shock", src:"Aligned to Surviving Sepsis Campaign Pediatrics 2020 / FEAST trial",
   phases:[
   {t:"0–5 min", h:"Recognise and access", items:[
     "O₂, monitor, IV/IO ×2. Send blood culture, glucose, lactate, VBG, CBC, CRP.",
     {d:"10% dextrose (if glucose <60 mg/dL)", per:2, u:"ml", r:"IV"}
   ]},
   {t:"5–60 min", h:"Fluids and antibiotics", items:[
-    {d:"Crystalloid bolus (RL / NS)", per:[10,20], u:"ml", r:"IV over 5–20 min", n:"Reassess after each: liver span, crepts, HR, CRT"},
+    {d:"Crystalloid bolus (RL / NS)", per:[10,20], u:"ml", max:1000, r:"IV over 5–20 min", n:"Reassess after each: liver span, crepts, HR, CRT"},
     "Up to 40–60 ml/kg in first hour if no fluid overload. Stop when overload signs appear.",
     {d:"Ceftriaxone", per:100, u:"mg", max:4000, r:"IV, per day in 1–2 doses", n:"Within 1 h. Add vancomycin / meropenem per local antibiogram"}
   ]},
@@ -561,7 +566,7 @@ const P = [
     "Correct Ca, glucose. Echo if available. Shift to PICU."
   ]}
 ]},
-{ id:"den", name:"Dengue shock", src:"Aligned to WHO 2012 / NVBDCP / IAP dengue guidance",
+{ id:"den", name:"Dengue shock", src:"Aligned to WHO 2009 dengue guidelines / NEJM 2012 review",
   phases:[
   {t:"Triage", h:"Classify and baseline", items:[
     "Warning signs: abdominal pain, persistent vomiting, fluid accumulation, mucosal bleed, lethargy/restlessness, liver >2 cm, rising Hct with falling platelets.",
@@ -573,18 +578,18 @@ const P = [
     {rec:w=>`Then ${f(3*w)}–${f(5*w)} ml/h for 2–4 h, then ${f(2*w)}–${f(3*w)} ml/h. Taper as Hct and urine output settle (target UO 1 ml/kg/h).`}
   ]},
   {t:"Compensated shock", h:"Bolus then step down", items:[
-    {d:"Crystalloid bolus", per:[10,20], u:"ml", r:"IV over 1 h"},
+    {d:"Crystalloid bolus", per:[10,20], u:"ml", max:1000, r:"IV over 1 h"},
     {rec:w=>`If better: ${f(10*w)} ml/h × 1–2 h → ${f(7*w)} ml/h × 2 h → ${f(5*w)} ml/h × 4 h → ${f(3*w)} ml/h, reduce over 24–48 h.`}
   ]},
   {t:"Hypotensive shock", h:"Rapid bolus, then check Hct", items:[
-    {d:"Crystalloid or colloid bolus", per:20, u:"ml", r:"IV over 15–30 min"},
+    {d:"Crystalloid or colloid bolus", per:20, u:"ml", max:1000, r:"IV over 15–30 min"},
     "Not improving and Hct rising → colloid 10–20 ml/kg over 30–60 min.",
     {warn:"Not improving and Hct falling → suspect occult bleeding. Transfuse."},
     {d:"Fresh whole blood", per:[10,20], u:"ml", r:"IV", n:"Or PRBC 5–10 ml/kg"},
     "No prophylactic platelets. Stop IV fluids 24–48 h after shock resolves; watch for overload in recovery phase."
   ]}
 ]},
-{ id:"snake", name:"Snake bite", src:"Aligned to Indian National Snakebite Management Protocol (MoHFW) / IAP",
+{ id:"snake", name:"Snake bite", src:"Aligned to Indian National Snakebite Management Protocol (MoHFW)",
   phases:[
   {t:"Arrival", h:"First aid and 20WBCT", items:[
     "Immobilise limb, remove rings/tight items. No tourniquet, incision or suction; release a tied tourniquet only after IV access and ASV ready.",
@@ -601,12 +606,12 @@ const P = [
   ]},
   {t:"Neurotoxic", h:"Airway plus neostigmine trial", items:[
     "Review 1 h after ASV: worsening → second 10 vials. No benefit beyond two doses.",
-    {d:"Atropine (before neostigmine)", per:0.02, u:"mg", max:0.6, r:"IV"},
+    {d:"Atropine (before neostigmine)", per:0.02, u:"mg", max:0.5, r:"IV"},
     {d:"Neostigmine trial", per:0.04, u:"mg", max:1.5, r:"IV / IM", n:"Measure single-breath count / upgaze before and after; continue per unit protocol if objective response"},
     {warn:"Paradoxical breathing, pooled secretions, falling SpO₂ → bag and intubate. Krait bites may not respond to neostigmine."}
   ]}
 ]},
-{ id:"scorp", name:"Scorpion sting", src:"Aligned to IAP STG / Bawaskar prazosin regimen",
+{ id:"scorp", name:"Scorpion sting", src:"Aligned to Bawaskar prazosin trial (BMJ 2011) / NEJM 2014 review",
   phases:[
   {t:"Arrival", h:"Grade severity", items:[
     "Local pain only vs autonomic storm: cold extremities, sweating, priapism, vomiting, tachycardia, hypertension or hypotension.",
@@ -626,7 +631,7 @@ const P = [
     "Avoid large fluid boluses."
   ]}
 ]},
-{ id:"op", name:"Organophosphate", src:"Aligned to IAP STG / WHO poisoning guidance",
+{ id:"op", name:"Organophosphate", src:"Based on Eddleston (Lancet 2008) / WHO Pocket Book",
   phases:[
   {t:"Arrival", h:"Decontaminate and ABC", items:[
     "Staff gloves. Remove clothes, wash skin with soap and water. No induced vomiting.",
@@ -637,15 +642,15 @@ const P = [
     "Then infusion at 10–20% of total loading dose per hour. Watch for atropine toxicity (fever, delirium, ileus)."
   ]},
   {t:"Within 1 h", h:"Oxime", items:[
-    {d:"Pralidoxime loading", per:[25,50], u:"mg", max:2000, r:"IV over 30 min"},
-    {d:"Pralidoxime infusion", per:[10,20], u:"mg/h", r:"IV", n:"Continue till no atropine needed for 12–24 h"}
+    {d:"Pralidoxime loading", per:30, u:"mg", max:2000, r:"IV over 20–30 min"},
+    {d:"Pralidoxime infusion", per:8, u:"mg/h", r:"IV", n:"Continue till no atropine needed for 12–24 h"}
   ]},
   {t:"Complications", h:"Seizures and intermediate syndrome", items:[
     {d:"Midazolam (seizures)", per:0.2, u:"mg", max:10, r:"IV / IM"},
     {warn:"Intermediate syndrome at 24–96 h: neck flexor, proximal and respiratory weakness. Monitor neck-lift and breathing daily."}
   ]}
 ]},
-{ id:"asthma", name:"Acute severe asthma", src:"Aligned to IAP STG / GINA",
+{ id:"asthma", name:"Acute severe asthma", src:"Aligned to GINA / Cochrane review of IV magnesium",
   phases:[
   {t:"0–20 min", h:"Oxygen and bronchodilators", items:[
     "O₂ to SpO₂ 94–98%. Sit upright.",
@@ -653,7 +658,9 @@ const P = [
     {d:"Ipratropium neb", fixed:"250 µg (<12 y) / 500 µg (≥12 y)", r:"With first 3 salbutamol nebs"}
   ]},
   {t:"Within 1 h", h:"Steroid", items:[
-    {d:"Prednisolone", per:[1,2], u:"mg", max:40, r:"Oral"},
+    {d:"Prednisolone (under 2 y)", per:[1,2], u:"mg", max:20, r:"Oral, once daily"},
+    {d:"Prednisolone (2–5 y)", per:[1,2], u:"mg", max:30, r:"Oral, once daily"},
+    {d:"Prednisolone (6 y and over)", per:[1,2], u:"mg", max:40, r:"Oral, once daily", n:"GINA: max 20 mg under 2 y, 30 mg at 2–5 y, 40 mg at 6–11 y"},
     {d:"Methylprednisolone (if vomiting / severe)", per:1, u:"mg", max:60, r:"IV 6-hourly", n:"Or hydrocortisone 4 mg/kg IV 6-hourly"}
   ]},
   {t:"Poor response", h:"Magnesium and IV bronchodilators", items:[
@@ -666,7 +673,7 @@ const P = [
     {d:"Ketamine (induction)", per:[1,2], u:"mg", r:"IV"}
   ]}
 ]},
-{ id:"dehy", name:"Dehydration & SAM", src:"Aligned to WHO Plan A/B/C / WHO 2013 SAM / IAP",
+{ id:"dehy", name:"Dehydration & SAM", src:"Aligned to WHO Plan A/B/C and SAM guidance / ESPGHAN–ESPID 2014",
   phases:[
   {t:"Some dehydration", h:"Plan B", items:[
     {d:"ORS", per:75, u:"ml", r:"Oral over 4 h", n:"Zinc 10 mg (<6 m) / 20 mg for 14 days"}
@@ -707,7 +714,7 @@ const P = [
     {d:"Rocuronium", per:1, u:"mg", max:100, r:"IV", n:"1.2 mg/kg for faster onset"}
   ]},
   {t:"Circulation", h:"Fluids and correction", items:[
-    {d:"Crystalloid bolus", per:[10,20], u:"ml", r:"IV / IO, reassess after each"},
+    {d:"Crystalloid bolus", per:[10,20], u:"ml", max:1000, r:"IV / IO, reassess after each"},
     {d:"10% dextrose", per:2, u:"ml", r:"IV, if glucose <60 mg/dL"},
     {d:"Calcium gluconate 10%", per:0.5, u:"ml", max:20, r:"IV slow", n:"Hyperkalaemia, hypocalcaemia, CCB toxicity"},
     {d:"Sodium bicarbonate 8.4%", per:1, u:"ml", max:50, r:"IV", n:"= 1 mEq/kg. Use 4.2% in neonates. Not routine in arrest"}
@@ -736,7 +743,7 @@ const P = [
     {d:"Amiodarone", per:5, u:"mg", max:300, r:"IV over 20–60 min", n:"Cardiology consult. Avoid verapamil under 1 year"}
   ]}
 ]},
-{ id:"croup", name:"Croup", src:"Aligned to WHO Pocket Book / IAP STG; Westley severity",
+{ id:"croup", name:"Croup", src:"Aligned to Cochrane review of glucocorticoids / Westley severity",
   phases:[
   {t:"Assess", h:"Severity (Westley)", items:[
     "Mild ≤2: barking cough, no stridor at rest. Moderate 3–5: stridor at rest, mild recession. Severe 6–11: marked recession, agitation. ≥12: impending failure (lethargy, cyanosis).",
@@ -755,7 +762,7 @@ const P = [
     {warn:"Call anaesthesia / ENT. Intubate with a tube 0.5 mm smaller than usual."}
   ]}
 ]},
-{ id:"bronch", name:"Bronchiolitis", src:"Aligned to AAP 2014 bronchiolitis guideline / IAP STG",
+{ id:"bronch", name:"Bronchiolitis", src:"Aligned to AAP 2014 bronchiolitis guideline / PARIS high-flow trial",
   phases:[
   {t:"Assess", h:"Diagnosis is clinical", items:[
     "Age 1–23 months, coryza then cough, wheeze or crackles, increased work of breathing.",
@@ -774,7 +781,7 @@ const P = [
     {warn:"Apnoea, exhaustion, rising CO₂, SpO₂ <90% on HFNC or FiO₂ >0.5 → CPAP and PICU."}
   ]}
 ]},
-{ id:"hyperk", name:"Hyperkalaemia", src:"Aligned to AHA PALS 2020 / IAP STG",
+{ id:"hyperk", name:"Hyperkalaemia", src:"Aligned to AHA PALS 2020 / Arch Dis Child 2012 review",
   phases:[
   {t:"Assess", h:"Confirm and check ECG", items:[
     "Repeat if haemolysed sample. ECG: peaked T, wide QRS, loss of P, sine wave.",
@@ -796,7 +803,7 @@ const P = [
     {warn:"Anuria, refractory K or rising creatinine → dialysis."}
   ]}
 ]},
-{ id:"hypog", name:"Hypoglycaemia", src:"Aligned to WHO Pocket Book / ISPAD 2022 / IAP STG",
+{ id:"hypog", name:"Hypoglycaemia", src:"Aligned to ISPAD 2022 / Pediatric Endocrine Society 2015",
   phases:[
   {t:"Confirm", h:"Check glucose", items:[
     "Treat if glucose <54 mg/dL, or <70 mg/dL with symptoms (<45 mg/dL in neonates).",
@@ -825,26 +832,47 @@ function etts(w){
   return `ETT cuffed ${cuf.toFixed(1)} (have ${(cuf-0.5).toFixed(1)} and ${(cuf+0.5).toFixed(1)} ready). Depth ≈ ${f(cuf*3)} cm at lip. Estimated age ~${Math.max(1,Math.round(age))} y from weight; confirm by age.`;
 }
 const PALS = {t:"AHA 2020 Pediatric Basic and Advanced Life Support", u:"https://doi.org/10.1161/CIR.0000000000000901", s:"Topjian AA et al. Circulation 2020;142:S469–S523"};
-const IAPBOOK = {t:"IAP Standard Treatment Guidelines 2022 (book, Jaypee)", u:"https://jaypeebrothers.com/products/9789354656514", s:"Indian Academy of Pediatrics"};
+const BNFC = {t:"BNF for Children (BNFC)", u:"https://bnfc.nice.org.uk/", s:"BMJ Group, Royal Pharmaceutical Society and RCPCH, via NICE"};
+const R = { // stronger primary sources — every DOI verified on PubMed
+  esett:{t:"Randomized trial of three anticonvulsant medications for status epilepticus (ESETT)", u:"https://doi.org/10.1056/NEJMoa1905795", s:"Kapur J et al. N Engl J Med 2019;381:2103–13"},
+  eclipse:{t:"Levetiracetam versus phenytoin for second-line treatment of paediatric convulsive status epilepticus (EcLiPSE)", u:"https://doi.org/10.1016/S0140-6736(19)30724-X", s:"Lyttle MD et al. Lancet 2019;393:2125–34"},
+  shaker:{t:"Anaphylaxis — a 2020 practice parameter update, systematic review and GRADE analysis", u:"https://doi.org/10.1016/j.jaci.2020.01.017", s:"Shaker MS et al. J Allergy Clin Immunol 2020;145:1082–1123"},
+  fluid:{t:"Clinical trial of fluid infusion rates for pediatric diabetic ketoacidosis (PECARN FLUID)", u:"https://doi.org/10.1056/NEJMoa1716816", s:"Kuppermann N et al. N Engl J Med 2018;378:2275–87"},
+  feast:{t:"Mortality after fluid bolus in African children with severe infection (FEAST)", u:"https://doi.org/10.1056/NEJMoa1101549", s:"Maitland K et al. N Engl J Med 2011;364:2483–95"},
+  dengue:{t:"Dengue (review)", u:"https://doi.org/10.1056/NEJMra1110265", s:"Simmons CP et al. N Engl J Med 2012;366:1423–32"},
+  scorp:{t:"Scorpion envenomation (review)", u:"https://doi.org/10.1056/NEJMra1401108", s:"Isbister GK, Bawaskar HS. N Engl J Med 2014;371:457–63"},
+  op:{t:"Management of acute organophosphorus pesticide poisoning", u:"https://doi.org/10.1016/S0140-6736(07)61202-1", s:"Eddleston M et al. Lancet 2008;371:597–607"},
+  mg:{t:"Intravenous magnesium sulfate for treating children with acute asthma in the emergency department (Cochrane)", u:"https://doi.org/10.1002/14651858.CD011050.pub2", s:"Griffiths B, Kew KM. Cochrane Database Syst Rev 2016;4:CD011050"},
+  espghan:{t:"ESPGHAN/ESPID evidence-based guidelines for the management of acute gastroenteritis in children in Europe", u:"https://doi.org/10.1097/MPG.0000000000000375", s:"Guarino A et al. J Pediatr Gastroenterol Nutr 2014;59:132–52"},
+  croupc:{t:"Glucocorticoids for croup in children (Cochrane)", u:"https://doi.org/10.1002/14651858.CD001955.pub4", s:"Gates A et al. Cochrane Database Syst Rev 2018;8:CD001955"},
+  croupl:{t:"Croup (seminar)", u:"https://doi.org/10.1016/S0140-6736(08)60170-1", s:"Bjornson CL, Johnson DW. Lancet 2008;371:329–39"},
+  paris:{t:"A randomized trial of high-flow oxygen therapy in infants with bronchiolitis (PARIS)", u:"https://doi.org/10.1056/NEJMoa1714855", s:"Franklin D et al. N Engl J Med 2018;378:1121–31"},
+  hyperk:{t:"The management of acute hyperkalaemia in neonates and children", u:"https://doi.org/10.1136/archdischild-2011-300623", s:"Masilamani K, van der Voort J. Arch Dis Child 2012;97:376–80"},
+  isphypo:{t:"ISPAD 2022: Assessment and management of hypoglycemia in children and adolescents with diabetes", u:"https://doi.org/10.1111/pedi.13443", s:"Abraham MB et al. Pediatr Diabetes 2022;23:1322–40"},
+  pes:{t:"Pediatric Endocrine Society recommendations for evaluation and management of persistent hypoglycemia", u:"https://doi.org/10.1016/j.jpeds.2015.03.057", s:"Thornton PS et al. J Pediatr 2015;167:238–45"},
+  coma:{t:"Non-traumatic coma in children", u:"https://doi.org/10.1136/adc.85.4.303", s:"Kirkham FJ. Arch Dis Child 2001;85:303–12"},
+  meningc:{t:"Corticosteroids for acute bacterial meningitis (Cochrane)", u:"https://doi.org/10.1002/14651858.CD004405.pub5", s:"Brouwer MC et al. Cochrane Database Syst Rev 2015;CD004405"},
+  charcoal:{t:"Position paper: single-dose activated charcoal (AACT / EAPCCT)", u:"https://doi.org/10.1081/clt-200051867", s:"Chyka PA et al. Clin Toxicol 2005;43:61–87"},
+  hypona:{t:"Clinical practice guideline on diagnosis and treatment of hyponatraemia", u:"https://doi.org/10.1530/EJE-13-1020", s:"Spasovski G et al. Eur J Endocrinol 2014;170:G1–47"}
+};
 const WHOPB = {t:"WHO Pocket Book of Hospital Care for Children, 2nd ed. (2013)", u:"https://www.who.int/publications/i/item/9789241548373", s:"World Health Organization"};
 const REFS = {
-  se:[{t:"Evaluation and Management of Status Epilepticus in Children: IAP STG 2022", u:"https://iapindia.org/pdf/Ch-040-evaluation-and-management-of-status-epilepticus-in-children.pdf", s:"Indian Academy of Pediatrics"},
-      {t:"Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus (AES 2016)", u:"https://doi.org/10.5698/1535-7597-16.1.48", s:"Glauser T et al. Epilepsy Curr 2016;16:48–61"}],
-  ana:[{t:"World Allergy Organization Anaphylaxis Guidance 2020", u:"https://doi.org/10.1016/j.waojou.2020.100472", s:"Cardona V et al. World Allergy Organ J 2020;13:100472"}, IAPBOOK],
-  dka:[{t:"ISPAD Clinical Practice Consensus Guidelines 2022: DKA and HHS", u:"https://doi.org/10.1111/pedi.13406", s:"Glaser N et al. Pediatr Diabetes 2022;23:835–856"}, IAPBOOK],
-  ss:[{t:"Surviving Sepsis Campaign Pediatric Guidelines 2020", u:"https://doi.org/10.1097/PCC.0000000000002198", s:"Weiss SL et al. Pediatr Crit Care Med 2020;21:e52–e106"}, IAPBOOK],
-  den:[{t:"Dengue: Guidelines for Diagnosis, Treatment, Prevention and Control (2009)", u:"https://www.who.int/publications/i/item/9789241547871", s:"World Health Organization"}, IAPBOOK],
+  se:[{t:"Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus (AES 2016)", u:"https://doi.org/10.5698/1535-7597-16.1.48", s:"Glauser T et al. Epilepsy Curr 2016;16:48–61"}, R.esett, R.eclipse],
+  ana:[{t:"World Allergy Organization Anaphylaxis Guidance 2020", u:"https://doi.org/10.1016/j.waojou.2020.100472", s:"Cardona V et al. World Allergy Organ J 2020;13:100472"}, R.shaker],
+  dka:[{t:"ISPAD Clinical Practice Consensus Guidelines 2022: DKA and HHS", u:"https://doi.org/10.1111/pedi.13406", s:"Glaser N et al. Pediatr Diabetes 2022;23:835–856"}, R.fluid],
+  ss:[{t:"Surviving Sepsis Campaign Pediatric Guidelines 2020", u:"https://doi.org/10.1097/PCC.0000000000002198", s:"Weiss SL et al. Pediatr Crit Care Med 2020;21:e52–e106"}, R.feast],
+  den:[{t:"Dengue: Guidelines for Diagnosis, Treatment, Prevention and Control (2009)", u:"https://www.who.int/publications/i/item/9789241547871", s:"World Health Organization"}, R.dengue],
   snake:[{t:"Standard Treatment Guidelines: Management of Snake Bite (2017)", u:"https://ncdc.mohfw.gov.in/uploads/pdf/Standard-Treatment-Guidelines-for-Management-of-Snake-Bite.pdf", s:"Ministry of Health & Family Welfare, Government of India"}],
-  scorp:[{t:"Scorpion antivenom plus prazosin vs prazosin alone: randomised trial", u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC3016167", s:"Bawaskar HS, Bawaskar PH. BMJ 2011;342:c7136"}, IAPBOOK],
-  op:[WHOPB, IAPBOOK],
-  asthma:[{t:"Global Strategy for Asthma Management and Prevention (GINA reports)", u:"https://ginasthma.org/reports/", s:"Global Initiative for Asthma"}, IAPBOOK],
-  dehy:[WHOPB, IAPBOOK],
+  scorp:[{t:"Scorpion antivenom plus prazosin vs prazosin alone: randomised trial", u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC3016167", s:"Bawaskar HS, Bawaskar PH. BMJ 2011;342:c7136"}, R.scorp],
+  op:[R.op, WHOPB],
+  asthma:[{t:"Global Strategy for Asthma Management and Prevention (GINA reports)", u:"https://ginasthma.org/reports/", s:"Global Initiative for Asthma"}, R.mg],
+  dehy:[WHOPB, R.espghan],
   resus:[PALS],
   svt:[PALS],
-  croup:[WHOPB, IAPBOOK],
-  bronch:[{t:"AAP Clinical Practice Guideline: Bronchiolitis (2014)", u:"https://doi.org/10.1542/peds.2014-2742", s:"Ralston SL et al. Pediatrics 2014;134:e1474–e1502"}, IAPBOOK],
-  hyperk:[PALS, IAPBOOK],
-  hypog:[WHOPB, {t:"ISPAD Clinical Practice Consensus Guidelines (2022)", u:"https://doi.org/10.1111/pedi.13406", s:"ISPAD 2022 series, Pediatric Diabetes"}, IAPBOOK]
+  croup:[R.croupc, R.croupl],
+  bronch:[{t:"AAP Clinical Practice Guideline: Bronchiolitis (2014)", u:"https://doi.org/10.1542/peds.2014-2742", s:"Ralston SL et al. Pediatrics 2014;134:e1474–e1502"}, R.paris],
+  hyperk:[PALS, R.hyperk],
+  hypog:[R.isphypo, R.pes, WHOPB]
 };
 
 const G = [
@@ -919,7 +947,7 @@ P.push(
     "Advanced: direct laryngoscopy and Magill forceps. If you cannot oxygenate: needle cricothyroidotomy (expert)."
   ]}
 ]},
-{ id:"icp", name:"Raised ICP / coma", src:"Aligned to Brain Trauma Foundation paediatric TBI guideline 2019 / IAP STG",
+{ id:"icp", name:"Raised ICP / coma", src:"Aligned to Brain Trauma Foundation paediatric TBI guideline 2019",
   phases:[
   {t:"0–10 min", h:"ABC, glucose, GCS", items:[
     "Airway: GCS ≤ 8, loss of airway reflexes or signs of herniation → intubate. Avoid hypotension and hypoxia.",
@@ -961,7 +989,7 @@ P.push(
     "Discharge only with a responsible adult and written head-injury advice (return for vomiting, drowsiness, seizures or worsening headache)."
   ]}
 ]},
-{ id:"mening", name:"Bacterial meningitis", src:"Aligned to NICE NG240 (2024) / IAP STG",
+{ id:"mening", name:"Bacterial meningitis", src:"Aligned to NICE NG240 (2024) / Cochrane review of corticosteroids",
   phases:[
   {t:"Recognise", h:"Suspected meningitis", items:[
     "Fever with irritability, altered sensorium, seizures, neck stiffness, bulging fontanelle or a non-blanching rash.",
@@ -1003,7 +1031,7 @@ P.push(
     "Cover with cling film (laid on, not wrapped tight). Check tetanus status."
   ]}
 ]},
-{ id:"pois", name:"Poisoning: first steps & antidotes", src:"Aligned to WHO Pocket Book 2013 / IAP STG / AHA PALS 2020",
+{ id:"pois", name:"Poisoning: first steps & antidotes", src:"Aligned to WHO Pocket Book 2013 / AACT–EAPCCT charcoal position paper / AHA PALS 2020",
   phases:[
   {t:"Arrival", h:"ABC, glucose, identify the agent", items:[
     "Airway, breathing, circulation; check glucose; treat seizures. Ask what, how much, when and by which route; bring the container.",
@@ -1047,7 +1075,7 @@ P.push(
     "Repeat paracetamol level, ALT and INR near the end of the infusion. Continue NAC if ALT is rising, INR is raised or paracetamol is still detectable — discuss with a poisons centre / hepatology."
   ]}
 ]},
-{ id:"na", name:"Sodium disorders", src:"Aligned to Moritz & Ayus (hyponatraemic encephalopathy) / IAP STG",
+{ id:"na", name:"Sodium disorders", src:"Aligned to Moritz & Ayus / European hyponatraemia guideline 2014",
   phases:[
   {t:"Assess", h:"Symptoms decide urgency", items:[
     "Hyponatraemia with headache, vomiting, lethargy, seizures or coma is an emergency regardless of the number.",
@@ -1064,7 +1092,7 @@ P.push(
     "Replace the deficit over 48 h with isotonic fluid (e.g. 0.9% saline with 5% dextrose). Check Na every 4–6 h."
   ]}
 ]},
-{ id:"hypoca", name:"Hypocalcaemia", src:"Aligned to IAP STG / AHA PALS 2020",
+{ id:"hypoca", name:"Hypocalcaemia", src:"Aligned to AHA PALS 2020 / BNF for Children",
   phases:[
   {t:"Recognise", h:"Symptomatic hypocalcaemia", items:[
     "Tetany, carpopedal spasm, laryngospasm, seizures, prolonged QTc.",
@@ -1087,7 +1115,7 @@ P.push(
   ]},
   {t:"Immediately", h:"Hydrocortisone and fluids", items:[
     {d:"Hydrocortisone", per:2, u:"mg", max:100, r:"IV / IM bolus", n:"Or by age: 25 mg (< 3 y), 50 mg (3–12 y), 100 mg (> 12 y)"},
-    {d:"NS bolus", per:20, u:"ml", r:"IV, repeat as needed"},
+    {d:"NS bolus", per:20, u:"ml", max:1000, r:"IV, repeat as needed"},
     {d:"10% dextrose (if glucose < 60 mg/dL)", per:2, u:"ml", r:"IV"}
   ]},
   {t:"Then", h:"Continue and taper", items:[
@@ -1138,14 +1166,14 @@ const PECARN = {t:"Identification of children at very low risk of clinically-imp
 Object.assign(REFS, {
   brady:[PALS],
   fbao:[{t:"European Resuscitation Council Guidelines 2021: Paediatric Life Support", u:"https://doi.org/10.1016/j.resuscitation.2021.02.015", s:"Van de Voorde P et al. Resuscitation 2021;161:327–87"}, PALS],
-  icp:[BTF, IAPBOOK],
+  icp:[BTF, R.coma],
   hi:[PECARN, BTF],
-  mening:[{t:"Meningitis (bacterial) and meningococcal disease: recognition, diagnosis and management (NG240)", u:"https://www.nice.org.uk/guidance/ng240", s:"National Institute for Health and Care Excellence, 2024"}, IAPBOOK],
+  mening:[{t:"Meningitis (bacterial) and meningococcal disease: recognition, diagnosis and management (NG240)", u:"https://www.nice.org.uk/guidance/ng240", s:"National Institute for Health and Care Excellence, 2024"}, R.meningc],
   burns:[{t:"ISBI Practice Guidelines for Burn Care", u:"https://doi.org/10.1016/j.burns.2016.05.013", s:"ISBI Practice Guidelines Committee. Burns 2016;42:953–1021"}],
-  pois:[WHOPB, IAPBOOK, PALS],
+  pois:[WHOPB, R.charcoal, PALS],
   pcm:[{t:"Updated guidelines for the management of paracetamol poisoning in Australia and New Zealand", u:"https://doi.org/10.5694/mja2.50428", s:"Chiew AL et al. Med J Aust 2020;212:175–83"}],
-  na:[{t:"New aspects in the pathogenesis, prevention, and treatment of hyponatremic encephalopathy in children", u:"https://doi.org/10.1007/s00467-009-1323-6", s:"Moritz ML, Ayus JC. Pediatr Nephrol 2010;25:1225–38"}, IAPBOOK],
-  hypoca:[IAPBOOK, PALS],
+  na:[{t:"New aspects in the pathogenesis, prevention, and treatment of hyponatremic encephalopathy in children", u:"https://doi.org/10.1007/s00467-009-1323-6", s:"Moritz ML, Ayus JC. Pediatr Nephrol 2010;25:1225–38"}, R.hypona],
+  hypoca:[PALS, BNFC],
   adrenal:[{t:"Diagnosis and Treatment of Primary Adrenal Insufficiency: Endocrine Society Clinical Practice Guideline", u:"https://doi.org/10.1210/jc.2015-1710", s:"Bornstein SR et al. J Clin Endocrinol Metab 2016;101:364–89"}],
   htn:[{t:"Clinical Practice Guideline for Screening and Management of High Blood Pressure in Children and Adolescents", u:"https://doi.org/10.1542/peds.2017-1904", s:"Flynn JT et al. Pediatrics 2017;140:e20171904"}]
 });
@@ -1183,7 +1211,7 @@ const DRUGS = [
  uses:[
   {ind:"Bradycardia (vagal / AV block)", per:0.02, u:"mg", max:0.5, f:"a", r:"IV / IO, may repeat once"},
   {ind:"Organophosphate poisoning", per:[0.02,0.05], u:"mg", min:0.1, f:"a", r:"IV, double every 5 min until atropinised"},
-  {ind:"Before neostigmine (neurotoxic snake bite)", per:0.02, u:"mg", max:0.6, f:"a", r:"IV"}
+  {ind:"Before neostigmine (neurotoxic snake bite)", per:0.02, u:"mg", max:0.5, f:"a", r:"IV"}
  ], p:["brady","resus","op","snake"]},
 {id:"adeno", n:"Adenosine", cls:"resus", k:["adenosine","svt"],
  forms:{a:{l:"3 mg/ml", c:3, u:"mg"}},
@@ -1240,7 +1268,7 @@ const DRUGS = [
 {id:"dzp", n:"Diazepam", cls:"seiz", k:["diazepam","valium","seizure"],
  forms:{a:{l:"5 mg/ml", c:5, u:"mg"}},
  uses:[
-  {ind:"Status epilepticus — IV", per:0.3, u:"mg", max:10, f:"a", r:"IV"},
+  {ind:"Status epilepticus — IV", per:[0.15,0.2], u:"mg", max:10, f:"a", r:"IV"},
   {ind:"Status epilepticus — rectal", per:0.5, u:"mg", max:20, f:"a", r:"PR"}
  ], p:["se"]},
 {id:"lev", n:"Levetiracetam", cls:"seiz", k:["levetiracetam","keppra","seizure"],
@@ -1337,7 +1365,9 @@ const DRUGS = [
   {ind:"Bacterial meningitis", per:0.15, u:"mg", max:10, f:"a", r:"IV 6-hourly for 4 days", n:"With or before the first antibiotic; not under 3 months"}
  ], p:["croup","mening"]},
 {id:"pred", n:"Prednisolone", cls:"endo", k:["prednisolone","steroid","asthma"],
- uses:[{ind:"Acute asthma", per:[1,2], u:"mg", max:40, r:"Oral, once daily for 3–5 days"}], p:["asthma"]},
+ uses:[{ind:"Acute asthma — under 2 y", per:[1,2], u:"mg", max:20, r:"Oral, once daily for 3–5 days"},
+  {ind:"Acute asthma — 2–5 y", per:[1,2], u:"mg", max:30, r:"Oral, once daily for 3–5 days"},
+  {ind:"Acute asthma — 6 y and over", per:[1,2], u:"mg", max:40, r:"Oral, once daily for 3–5 days"}], p:["asthma"]},
 {id:"mpred", n:"Methylprednisolone", cls:"endo", k:["methylprednisolone","steroid","asthma"],
  uses:[{ind:"Severe asthma (vomiting / unable to take oral)", per:1, u:"mg", max:60, r:"IV every 6 h"}], p:["asthma"]},
 {id:"d10", n:"Dextrose 10%", cls:"endo", k:["dextrose","glucose","hypoglycaemia","d10"],
@@ -1418,8 +1448,8 @@ const DRUGS = [
  warn:"Only with a protected airway. Not for hydrocarbons, corrosives, alcohols, iron or lithium.", p:["pois"]},
 {id:"pam", n:"Pralidoxime (PAM)", cls:"tox", k:["pralidoxime","pam","oxime","organophosphate"],
  uses:[
-  {ind:"Organophosphate — loading", per:[25,50], u:"mg", max:2000, r:"IV over 30 min"},
-  {ind:"Organophosphate — infusion", per:[10,20], u:"mg/h", r:"IV, until no atropine needed for 12–24 h"}
+  {ind:"Organophosphate — loading", per:30, u:"mg", max:2000, r:"IV over 20–30 min"},
+  {ind:"Organophosphate — infusion", per:8, u:"mg/h", r:"IV, until no atropine needed for 12–24 h"}
  ], p:["op"]},
 {id:"neostig", n:"Neostigmine", cls:"tox", k:["neostigmine","snake","neurotoxic"],
  uses:[{ind:"Neurotoxic snake bite — trial", per:0.04, u:"mg", max:1.5, r:"IV / IM", n:"Give atropine first; assess objective response"}], p:["snake"]},
@@ -1441,7 +1471,7 @@ const DRUGS = [
   {ind:"Then infusion", rec:w=>`2 mg/kg/h = ${f(2*w)} mg/h for at least 8 h or until bleeding stops.`}
  ], p:[]}
 ];
-const DRUG_REFS = [PALS, WHOPB, IAPBOOK,
+const DRUG_REFS = [PALS, WHOPB, BNFC,
   {t:"Clinical practice guideline for emergency department ketamine dissociative sedation: 2011 update", u:"https://doi.org/10.1016/j.annemergmed.2010.11.030", s:"Green SM et al. Ann Emerg Med 2011;57:449–61"}];
 
 /* ======================================================================
@@ -1669,7 +1699,7 @@ function renderProto(){
     `</div>` +
     (dz.length ? `<h2 class="dh">Drug library</h2><div class="chips">${dz.map(d=>`<button class="chip" data-opend="${d.id}">${d.n}</button>`).join("")}</div>` : "") +
     refsHTML(REFS[cur]||[]) +
-    `<p class="foot">Quick reference for trained clinicians. Doses are calculated from the weight entered and capped at adult maximums. Verify against the current IAP Standard Treatment Guidelines and your unit protocol before giving.</p>`;
+    `<p class="foot">Quick reference for trained clinicians. Doses are calculated from the weight entered and stop at the maximum single dose given in paediatric references (for most drugs this equals the usual adult dose, so it only affects larger children). Verify against the cited guidelines and your unit protocol before giving.</p>`;
 }
 
 /* ---------- drug ---------- */
@@ -1709,7 +1739,7 @@ function renderDrug(){
     (d.warn ? `<div class="warn">${d.warn}</div>` : "") +
     (inP.length ? `<h2 class="dh">Used in protocols</h2><div class="chips">${inP.map(id=>`<button class="chip" data-open="${id}">${byId(id).name}</button>`).join("")}</div>` : "") +
     refsHTML(DRUG_REFS) +
-    `<p class="foot">Doses match the protocols in this app and standard paediatric references, capped at adult maximums. Check the product label and your local formulary before giving.</p>`;
+    `<p class="foot">Doses match the protocols in this app and paediatric references; each stops at the paediatric maximum single dose (for most drugs the usual adult dose). Check the product label and your local formulary before giving.</p>`;
 }
 
 /* ---------- scores & calculators ---------- */

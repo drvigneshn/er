@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Pediatric ER Companion",
   "short_name": "Ped ER",
-  "description": "Weight-based paediatric emergency protocols and doses — aligned to IAP STG, WHO and AHA PALS.",
+  "description": "Weight-based paediatric emergency protocols and doses — based on international paediatric guidelines.",
   "lang": "en-IN",
   "categories": ["medical", "health"],
   "start_url": "./",

@@ -53,7 +53,7 @@ protocol/feature → minor.
   reviews it at https://er.pediaos.com/preview.html. `sw.js` never caches `preview.html`.
 - Go live only when the author approves: copy `preview.html` → `index.html`, set
   `PREVIEW = false`, remove the `.pvbanner` div and the `robots` meta, bump versions, and
-  delete `preview.html`. (v1.2.0, v1.3.0 and v1.3.1 went live this way.)
+  delete `preview.html`. (v1.2.0 through v1.3.2 went live this way.)
 - Since v1.2 the added data sits after the original `KW` block: `NEWP` (new protocol ids),
   `DRUGS` / `DCLS` (drug library; `forms` give strengths so volumes are computed when a
   use's unit matches), `SCORES` (scores need every item answered before a result shows;
@@ -61,6 +61,10 @@ protocol/feature → minor.
 - When a drug appears in both a protocol and the library, the doses must match.
 
 ## Clinical content
+- References must be strong primary sources — international guidelines, landmark trials,
+  Cochrane reviews — with DOIs verified (e.g. on PubMed). Do not cite the IAP STG book (the
+  author removed it in v1.3.2). Shared reference objects: `PALS`, `WHOPB`, `BNFC`, `R.*`.
+- Dose caps (`max`) are the paediatric maximum single dose, not "adult doses".
 Doses and protocols are the author's (Dr Vignesh N, paediatrician). Don't change a dose,
 maximum or protocol step unless asked; flag suspected errors instead.
 
