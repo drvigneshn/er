@@ -6,7 +6,7 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.3.5" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.3.6" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
 <meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, based on international paediatric guidelines.">
 <meta name="theme-color" content="#0B1F3A">
@@ -130,7 +130,6 @@ button{cursor:pointer}
 }
 @media (max-width:419px){
   .newpt .lg{display:none} .newpt .sm{display:inline}
-  .tools .wide-only{display:none}
 }
 
 /* Display panel (text size, layout, theme) */
@@ -244,11 +243,6 @@ body.mode-mobile .wrap{max-width:36rem}
 body.mode-mobile .bands{display:flex;align-items:stretch}
 body.mode-mobile .phase{grid-template-columns:1fr}
 body.mode-mobile .barin{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand tools" "pt pt"}
-@container (min-width:46rem){
-  body.mode-land .phases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1.75rem;align-items:start}
-  body.mode-land .phase{grid-template-columns:1fr}
-  body.mode-land .time{padding:0 0 .125rem}
-}
 
 /* ---------- v1.2: sections, drug library, scores ---------- */
 .tabs{margin-top:.875rem}
@@ -350,6 +344,10 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 .sister .t{display:block;font-weight:600;font-size:.875rem}
 .sister .d{display:block;font-size:.75rem;color:var(--muted)}
 .sister .go{margin-left:auto;color:var(--accent);font-weight:700}
+.pmark{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:0 .5rem;color:var(--muted);font-size:.8125rem;text-decoration:none;border-radius:.5rem}
+.pmark svg{width:1.375rem;height:1.375rem;flex:none}
+.pmark b{color:var(--ink);font-weight:700}
+.pmark:hover b{color:var(--accent)}
 .copy{font-size:.75rem;color:var(--muted);line-height:1.6}
 .copy a{display:inline-block;padding:.5rem .125rem;color:var(--muted);text-underline-offset:2px}
 .sister{text-align:left}
@@ -385,7 +383,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.5</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.6</span></h2>
     </div>
     <p class="gsub">Paediatric emergency decision-support · international guideline-based</p>
     <div class="gcard">
@@ -415,7 +413,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
       <li><b>Check the strength</b> — amber "Concentration check" boxes flag look-alike ampoules.</li>
       <li><b>Scores</b> — tap one answer per item; the result appears when all are answered.</li>
       <li><b>Voice</b> — tap the mic, then say "open DKA", "weight 12", "read", "next" or "stop".</li>
-      <li><b>Menu (≡)</b> — text size, layout (Mobile / Tablet / Landscape) and colour mode.</li>
+      <li><b>Menu (≡)</b> — text size, layout (Mobile / Tablet), colour mode and help.</li>
       <li><b>New patient</b> — clears the weight and answers. Patient details are kept only while the app is open.</li>
       <li><b>Install</b> — browser menu → "Add to Home screen". Works offline after the first open.</li>
     </ol>
@@ -428,7 +426,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.5</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.6</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
       <label class="wt"><span class="l">Weight</span><span class="wv"><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></span></label>
@@ -437,19 +435,17 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
       <span id="wnote" aria-live="polite"></span>
     </div>
     <div class="tools">
-      <button class="ibtn wide-only" type="button" data-guide title="How to use" aria-label="How to use"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5h.01"/></svg></button>
       <button class="voice" id="voiceBtn" type="button" aria-pressed="false" title="Voice commands and read-aloud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg><span class="lbl" id="voiceLbl">Voice off</span></button>
-      <button class="ibtn wide-only" id="themeBtn" type="button" title="Colour mode" aria-label="Colour mode"></button>
-      <button class="ibtn" id="dispBtn" type="button" aria-expanded="false" aria-controls="disp" title="Menu: text size, layout, colour mode, help" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button class="ibtn" id="dispBtn" type="button" aria-expanded="false" aria-controls="disp" title="Menu: text size, layout, colour mode, help" aria-label="Menu: text size, layout, colour mode, help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
     <div class="disp" id="disp" hidden>
       <h4>Text size</h4>
       <div class="tsrow"><button type="button" data-ts="-1" aria-label="Smaller text">A−</button><span id="tsVal">100%</span><button type="button" data-ts="1" aria-label="Larger text">A+</button></div>
       <h4>Layout</h4>
       <div class="seg" role="group" aria-label="Layout">
-        <button type="button" data-layout="auto">Auto</button><button type="button" data-layout="mobile">Mobile</button><button type="button" data-layout="tab">Tablet</button><button type="button" data-layout="land">Landscape</button>
+        <button type="button" data-layout="auto">Auto</button><button type="button" data-layout="mobile">Mobile</button><button type="button" data-layout="tab">Tablet</button>
       </div>
-      <p class="hint">Tablet: list beside the protocol. Landscape: also lays protocol steps out in two columns to fit more on one screen.</p>
+      <p class="hint">Tablet: list beside the protocol.</p>
       <h4>Colour mode</h4>
       <div class="seg" role="group" aria-label="Colour mode">
         <button type="button" data-set-theme="night">Night</button><button type="button" data-set-theme="day">Day</button><button type="button" data-set-theme="bright">Bright</button>
@@ -471,13 +467,14 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.5</span> · Created by <strong>Dr Vignesh N</strong>, PediaOS</p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.6</span> · Created by <strong>Dr Vignesh N</strong>, PediaOS</p>
     <p>Decision-support aid for trained clinicians. Verify every dose against the cited guidelines and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button> · <button class="linkbtn" type="button" data-guide>How to use</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
       <span><span class="t">Code Blue Companion</span><span class="d">cbc.pediaos.com · paediatric resuscitation console</span></span>
       <span class="go" aria-hidden="true">→</span>
     </a>
+    <a class="pmark" href="https://pediaos.com/" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#0e3b4f"/><path d="M50 78C24 60 16 47 16 36c0-10 8-17 17-17 8 0 13 5 17 11 4-6 9-11 17-11 9 0 17 7 17 17 0 11-8 24-34 42z" fill="#ff7a59"/><polyline points="22,46 38,46 44,34 52,60 58,42 62,46 78,46" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A <b>PediaOS</b> product</span></a>
     <p class="copy">© 2026 PediaOS (Dr Vignesh N). All rights reserved.<br>“Pediatric ER Companion” · Not for reuse or redistribution without written permission. · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p>
   </div>
 </footer>
@@ -1804,12 +1801,12 @@ function renderScore(){
     (s.foot ? `<p class="foot">${s.foot}</p>` : "") + refsHTML(s.refs||[]);
 }
 
-/* ---------- layout: Auto / Mobile / Tablet / Landscape ---------- */
+/* ---------- layout: Auto / Mobile / Tablet ---------- */
 const splitMQ = matchMedia("(min-width: 900px) and (orientation: landscape), (min-width: 1200px)");
-const LAYOUTS = ["auto","mobile","tab","land"];
+const LAYOUTS = ["auto","mobile","tab"];
 function isSplit(){
   if(layout==="mobile") return false;
-  if(layout==="tab"||layout==="land") return innerWidth>=640;
+  if(layout==="tab") return innerWidth>=640;
   return splitMQ.matches;
 }
 function placeholder(){
@@ -1827,7 +1824,6 @@ function show(v){
   b.classList.toggle("split", split);
   b.classList.toggle("wide", can && !det);
   b.classList.toggle("mode-mobile", layout==="mobile");
-  b.classList.toggle("mode-land", layout==="land");
   $("#home").hidden = !split && v!=="home";
   $("#proto").hidden = !split && v!=="proto";
   renderHome();
@@ -1883,21 +1879,12 @@ function applyLayoutBtns(){ document.querySelectorAll("[data-layout]").forEach(b
 
 /* ---------- colour mode ---------- */
 const THEMES = ["night","day","bright"];
-const THEME_ICON = {
-  night:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`,
-  day:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`,
-  bright:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>`
-};
 const darkMQ = matchMedia("(prefers-color-scheme: dark)");
 function effTheme(){ return theme || (darkMQ.matches ? "night" : "day"); }
 function applyTheme(){
   const t = effTheme();
   document.documentElement.setAttribute("data-app-theme", t);
   document.querySelectorAll("[data-set-theme]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.setTheme===t));
-  const nm = {night:"Night",day:"Day",bright:"Bright (sunlight)"}[t];
-  $("#themeBtn").innerHTML = THEME_ICON[t];
-  $("#themeBtn").title = `Colour mode: ${nm} — tap to change`;
-  $("#themeBtn").setAttribute("aria-label", `Colour mode: ${nm}. Tap to change.`);
 }
 darkMQ.addEventListener("change",()=>{ if(!theme) applyTheme(); });
 
@@ -2054,7 +2041,6 @@ document.addEventListener("keydown",e=>{ if(e.key!=="Escape") return; if(!$("#gu
 document.addEventListener("change",e=>{ if(e.target.matches("[data-stog]")){ SA[curS]={young:e.target.checked, v:[]}; save(); renderScore(); } });
 document.addEventListener("input",e=>{ if(e.target.id==="tbsa"){ tbsa=e.target.value; save(); $("#calcOut").innerHTML=burnsOut(); } });
 $("#voiceBtn").addEventListener("click",()=>setVoice(!voiceOn));
-$("#themeBtn").addEventListener("click",()=>{ theme = THEMES[(THEMES.indexOf(effTheme())+1)%THEMES.length]; save(); applyTheme(); });
 $("#dispBtn").addEventListener("click",()=>toggleDisp($("#disp").hidden));
 $("#gateOk").addEventListener("click",()=>{ closeGate(); firstRunGuide(); });
 $("#guideOk").addEventListener("click",closeGuide);
@@ -2069,6 +2055,7 @@ try{ const t=JSON.parse(sessionStorage.getItem("percPt")||"null");
     if(t.SA) Object.assign(SA, t.SA); if(t.tbsa) tbsa=t.tbsa; } }catch(e){}
 try{ const s=JSON.parse(localStorage.getItem("perc")||"null");
   if(s){ if(Array.isArray(s.pins)) pins=s.pins; if(s.theme) theme=s.theme;
+    if(s.layout==="land") s.layout="tab"; /* Landscape was removed in v1.3.6 */
     if(LAYOUTS.includes(s.layout)) layout=s.layout; if(["a","p","d","s"].includes(s.sec)) sec=s.sec; if(TS.includes(s.ts)) tscale=s.ts; } }catch(e){}
 applyTheme();
 applyTS();

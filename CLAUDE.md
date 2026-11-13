@@ -33,8 +33,11 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
 - `about.html` and `privacy.html` are linked from the footer; keep the privacy page accurate
   (no accounts/analytics; localStorage only; Google Fonts; browser speech recognition).
 - Top bar: logo + name + version | weight + age (age select sets an *estimated* weight and
-  flags it) | voice, colour-mode, Aa (text size + layout panel `#disp`).
-- Layouts: Auto / Mobile / Tablet (list beside protocol) / Landscape (also 2-column phases).
+  flags it) | voice, menu ≡ (`#disp`: text size, layout, colour mode, help). Colour mode and
+  How-to live only in the menu (the separate sun and ? buttons were removed in v1.3.6).
+- Layouts: Auto / Mobile / Tablet (list beside protocol). Landscape was removed in v1.3.6; a
+  saved `land` is read as `tab`.
+- Footer carries the shared `.pmark` "A PediaOS product" mark (same in CBC and PALS).
 - Weight checks: outside 0.5–150 kg is rejected; <2 or >100 kg shows "verify".
 - Navigation lives in the URL hash — `#p/<id>`, `#d/<id>`, `#s/<id>` — via `nav()` /
   `route()` / `popstate`, so refresh keeps the page and the phone back button works.
@@ -43,7 +46,7 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
   when the app is closed or by **New patient**. Never put patient data in localStorage.
 - Tablet/desktop start full-width (`body.wide`, All index in 3 columns) and switch to the
   split view only once something is open. "How to use" guide `#guide` shows once ever
-  (`localStorage percGuide`), reopenable from the menu (≡), the ? button and the footer.
+  (`localStorage percGuide`), reopenable from the menu (≡) and the footer.
 
 ## Versioning (every change)
 Bump all together: every `vX.Y.Z` in `index.html` (top bar, disclaimer gate, footer —
