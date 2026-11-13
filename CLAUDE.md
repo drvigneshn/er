@@ -22,6 +22,11 @@ Sister app of Code Blue Companion (`drvigneshn/cbc`, https://cbc.pediaos.com).
   amber for "estimated/verify". Themes via `data-app-theme` = `day` / `night` / `bright` on
   `<html>`; style only through the CSS variables so all three work. CSS is in `rem`, so the
   text sizer (`--ts`, 85–135%) scales everything.
+- One layer of chrome per element: a surface gets a border *or* a fill, not border + shadow + fill.
+  On the browse index (`.idxs`) the section card has the border; tiles (`.ilink`) are filled with
+  `--soft` and unbordered (Bright theme keeps borders for contrast); category labels (`.idxt`) are a
+  coloured rule + text, not a filled bar. (From the v1.3.5 audit of the All tab, where bordered
+  tiles inside bordered, shadowed cards under filled bars all competed.)
 - Disclaimer gate `#gate` shows once per browser session, i.e. on every app launch
   (`sessionStorage percAck`); footer "Read the disclaimer" reopens it. It must fit one phone
   screen without scrolling. The Medshark award belongs to Code Blue Companion — don't show it here.
