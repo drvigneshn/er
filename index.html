@@ -6,7 +6,7 @@
 <title>Pediatric ER Companion</title>
 <!--
   Pediatric ER Companion — © 2026 Dr Vignesh N. All rights reserved.
-  Version: every "v1.3.3" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
+  Version: every "v1.3.4" in this file (top bar, disclaimer, footer) + CACHE in sw.js. Bump all together.
 -->
 <meta name="description" content="Pediatric ER Companion — weight-based emergency protocols and doses for children, based on international paediatric guidelines.">
 <meta name="theme-color" content="#0B1F3A">
@@ -116,6 +116,11 @@ button{cursor:pointer}
   .barin{grid-template-columns:auto auto minmax(0,1fr) auto;grid-template-areas:"brand pt . tools";column-gap:1.25rem}
 }
 @media (min-width:420px){ .newpt .sm{display:none} }
+@media (min-width:760px) and (max-width:1023px){
+  .pt{flex-wrap:nowrap}
+  .voice .lbl,.newpt .lg{display:none} .newpt .sm{display:inline}
+  .voice{padding:0}
+}
 @media (max-width:560px){
   .voice .lbl{display:none}
   .ibtn,.voice{padding:0}
@@ -139,7 +144,7 @@ button{cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--pressed);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(15,23,42,.14)}
 :root[data-app-theme="bright"] .seg button[aria-pressed="true"]{color:#FFFFFF}
 .tsrow{display:flex;align-items:center;gap:.5rem}
-.tsrow button{width:3rem;height:2.25rem;border:var(--bw) solid var(--line);border-radius:.5rem;background:var(--surface);font-weight:700}
+.tsrow button{width:max(3rem,44px);height:max(2.75rem,44px);border:var(--bw) solid var(--line);border-radius:.5rem;background:var(--surface);font-weight:700}
 .tsrow button:first-child{font-size:.8125rem} .tsrow button:last-child{font-size:1.0625rem}
 #tsVal{flex:1;text-align:center;font-weight:600;font-size:.9375rem}
 .disp .hint{margin:.5rem 0 0;font-size:.75rem;color:var(--muted)}
@@ -199,7 +204,7 @@ h1{margin:.375rem 0 .25rem;font-size:1.75rem;line-height:1.15;font-weight:700;le
 .phase{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:0 1rem;border-top:var(--bw) solid var(--line);padding:1rem 0}
 .time{padding-top:.1875rem;font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
 .phase h2{margin:0 0 .375rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;font-size:1.0625rem;font-weight:var(--strong);letter-spacing:-0.01em}
-.say{flex:none;min-height:2rem;padding:0 .625rem;border-radius:.5rem;border:var(--bw) solid var(--line);background:var(--surface);color:var(--accent);font-size:.75rem;font-weight:600}
+.say{flex:none;min-height:max(2.5rem,40px);padding:0 .625rem;border-radius:.5rem;border:var(--bw) solid var(--line);background:var(--surface);color:var(--accent);font-size:.75rem;font-weight:600}
 .phase.speaking{background:color-mix(in srgb,var(--accent) 8%,transparent);border-radius:.625rem}
 .phase ul{margin:0;padding-left:1.125rem}
 .phase li{margin:.1875rem 0;max-width:46rem;font-size:.9375rem}
@@ -332,15 +337,15 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 .site-foot .wrap{display:grid;gap:.5rem;justify-items:center;text-align:center}
 .site-foot p{margin:0}
 .site-foot strong{color:var(--ink)}
-.linkbtn{border:0;background:none;padding:0;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
+.linkbtn{border:0;background:none;padding:.625rem .125rem;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
 .sister{display:flex;align-items:center;gap:.75rem;margin:.375rem 0;padding:.75rem .875rem;max-width:30rem;border:var(--bw) solid var(--line);border-radius:.75rem;background:var(--bg);color:var(--ink);text-decoration:none}
 .sister:hover{border-color:var(--accent)}
 .sister .ico{width:2rem;height:2rem;flex:none;border-radius:.5rem;background:#0B1220;display:grid;place-items:center}
 .sister .t{display:block;font-weight:600;font-size:.875rem}
 .sister .d{display:block;font-size:.75rem;color:var(--muted)}
 .sister .go{margin-left:auto;color:var(--accent);font-weight:700}
-.copy{font-size:.75rem;color:var(--faint);line-height:1.6}
-.copy a{color:var(--muted);text-underline-offset:2px}
+.copy{font-size:.75rem;color:var(--muted);line-height:1.6}
+.copy a{display:inline-block;padding:.5rem .125rem;color:var(--muted);text-underline-offset:2px}
 .sister{text-align:left}
 
 /* ---------- Disclaimer gate ---------- */
@@ -374,7 +379,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="gbox">
     <div class="ghead">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.3</span></h2>
+      <h2 id="gTitle">Pediatric ER Companion<span class="gbadge">v1.3.4</span></h2>
     </div>
     <p class="gsub">Paediatric emergency decision-support · international guideline-based</p>
     <div class="gcard">
@@ -417,7 +422,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
   <div class="wrap barin">
     <a class="brand" href="./" aria-label="Pediatric ER Companion — home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#1D4ED8"/><path d="M41 24h18v17h17v18H59v17H41V59H24V41h17z" fill="#fff"/></svg>
-      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.3</span> · by Dr Vignesh N</span></span>
+      <span><span class="bname">Pediatric ER Companion</span><span class="bsub"><span class="ver">v1.3.4</span> · by Dr Vignesh N</span></span>
     </a>
     <div class="pt">
       <label class="wt"><span class="l">Weight</span><span class="wv"><input id="w" type="number" inputmode="decimal" min="0.5" max="150" step="0.1" placeholder="--" aria-label="Weight in kg"><b>kg</b></span></label>
@@ -460,7 +465,7 @@ h2.dh{margin:1.25rem 0 .375rem;font-size:.6875rem;font-weight:600;letter-spacing
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.3</span> · Created by <strong>Dr Vignesh N</strong>, PediaOS</p>
+    <p><strong>Pediatric ER Companion</strong> <span class="ver">v1.3.4</span> · Created by <strong>Dr Vignesh N</strong>, PediaOS</p>
     <p>Decision-support aid for trained clinicians. Verify every dose against the cited guidelines and your unit protocol. <button class="linkbtn" type="button" data-disclaimer>Read the disclaimer</button> · <button class="linkbtn" type="button" data-guide>How to use</button></p>
     <a class="sister" href="https://cbc.pediaos.com/" target="_blank" rel="noopener">
       <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 100 100"><polygon points="34,18 34,53.2 43.6,53.2 43.6,82 66,43.6 53.2,43.6 66,18" fill="#ffb020"/></svg></span>
@@ -1858,8 +1863,16 @@ function newPatient(){
   toast("New patient — weight and answers cleared");
   wIn.focus({preventScroll:true});
 }
-function openGuide(){ toggleDisp(false); $("#guide").hidden=false; document.body.classList.add("gated"); $("#guideOk").focus({preventScroll:true}); }
-function closeGuide(){ $("#guide").hidden=true; document.body.classList.remove("gated"); try{ localStorage.setItem("percGuide","1"); }catch(e){} }
+/* While a dialog is open the page behind it is inert, so Tab and screen readers stay inside it;
+   focus goes back to the control that opened it on close. */
+let modalBack=null;
+function setModal(on){
+  if(on){ const a=document.activeElement; if(a && a!==document.body && !a.closest("#gate,#guide")) modalBack=a; }
+  document.querySelectorAll("header.bar,main,footer.site-foot").forEach(el=>{ el.inert=on; });
+  if(!on && modalBack){ if(modalBack.isConnected) modalBack.focus({preventScroll:true}); modalBack=null; }
+}
+function openGuide(){ toggleDisp(false); setModal(true); $("#guide").hidden=false; document.body.classList.add("gated"); $("#guideOk").focus({preventScroll:true}); }
+function closeGuide(){ $("#guide").hidden=true; document.body.classList.remove("gated"); setModal(false); try{ localStorage.setItem("percGuide","1"); }catch(e){} }
 function applyLayoutBtns(){ document.querySelectorAll("[data-layout]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.layout===layout)); }
 
 /* ---------- colour mode ---------- */
@@ -1901,8 +1914,8 @@ function toggleDisp(open){
 }
 
 /* ---------- disclaimer (once per browser session = every app launch) ---------- */
-function openGate(){ toggleDisp(false); document.documentElement.removeAttribute("data-ack"); $("#gate").hidden=false; document.body.classList.add("gated"); $("#gateOk").focus({preventScroll:true}); }
-function closeGate(){ $("#gate").hidden=true; document.body.classList.remove("gated"); try{ sessionStorage.setItem("percAck","1"); }catch(e){} }
+function openGate(){ toggleDisp(false); setModal(true); document.documentElement.removeAttribute("data-ack"); $("#gate").hidden=false; document.body.classList.add("gated"); $("#gateOk").focus({preventScroll:true}); }
+function closeGate(){ $("#gate").hidden=true; document.body.classList.remove("gated"); setModal(false); try{ sessionStorage.setItem("percAck","1"); }catch(e){} }
 function firstRunGuide(){ let seen=null; try{ seen=localStorage.getItem("percGuide"); }catch(e){} if(!seen) openGuide(); }
 
 /* ---------- speech out ---------- */
@@ -2024,6 +2037,13 @@ document.addEventListener("click",e=>{
   if(e.target.closest("[data-disclaimer]")){ openGate(); return; }
   if(e.target.closest("[data-guide]")){ openGuide(); return; }
 });
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Tab") return;
+  const dlg=[$("#gate"),$("#guide")].find(d=>!d.hidden && getComputedStyle(d).display!=="none"); if(!dlg) return;
+  const f=[...dlg.querySelectorAll("button,a[href],input,select")]; if(!f.length) return;
+  const i=f.indexOf(document.activeElement), n=e.shiftKey?(i<=0?f.length-1:i-1):(i===f.length-1||i<0?0:i+1);
+  e.preventDefault(); f[n].focus();
+});
 document.addEventListener("keydown",e=>{ if(e.key!=="Escape") return; if(!$("#guide").hidden){ closeGuide(); return; } if(!$("#disp").hidden){ toggleDisp(false); $("#dispBtn").focus(); } });
 document.addEventListener("change",e=>{ if(e.target.matches("[data-stog]")){ SA[curS]={young:e.target.checked, v:[]}; save(); renderScore(); } });
 document.addEventListener("input",e=>{ if(e.target.id==="tbsa"){ tbsa=e.target.value; save(); $("#calcOut").innerHTML=burnsOut(); } });
@@ -2050,7 +2070,7 @@ applyLayoutBtns();
 wNote();
 save();   // drops any weight left in long-term storage by older versions
 route();
-if(document.documentElement.hasAttribute("data-ack")) closeGate(); else $("#gateOk").focus({preventScroll:true});
+if(document.documentElement.hasAttribute("data-ack")) closeGate(); else { setModal(true); $("#gateOk").focus({preventScroll:true}); }
 if("serviceWorker" in navigator) addEventListener("load",()=>{ navigator.serviceWorker.register("sw.js").catch(()=>{}); });
 </script>
 </body>
